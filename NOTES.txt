@@ -19,6 +19,13 @@ text, so I was a necessary meat puppet in order to provide visual feedback from 
 6/20/16 - Added support to update the database
          * Project cleanup before Initial Checkin
          * Project LOC: 15707
+         * Performed first checkin to isfdb-go on GitHub.
+         * Moved on to stats-and_tops.cgi
+         * Project LOC: 15765
+         * Moved on to authors_by_debut_year_table.cgi
+         * Project LOC: 15877
+         * Moved on to popular_authors_table.cgi
+         * Project LOC: xxxx
 
 6/13/26 - Tweaked index.cgi, and added view history of pages to the navbar.
          * Project LOC: 14804
