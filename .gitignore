@@ -10,7 +10,7 @@ user_data.db-wal
 
 # Compiled binary
 isfdb-go
-server
+/server
 
 # Vim swap files
 *.swp
