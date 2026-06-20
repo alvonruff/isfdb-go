@@ -102,8 +102,3 @@ leaning towards an MIT-0 license, it responded with:
 
 Well said.
 
-
-Size:
-   Full website: 199,872 LOC
-   biblio only:   30,646 LOC
-   Go version:    xx,xxx LOC
