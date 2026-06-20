@@ -78,6 +78,8 @@ func main() {
 	http.HandleFunc("/popular_authors.cgi", isfdb.PopularAuthorsHandler)
 	http.HandleFunc("/most_popular_table.cgi", isfdb.MostPopularTableHandler)
 	http.HandleFunc("/most_popular.cgi", isfdb.MostPopularHandler)
+	http.HandleFunc("/most_reviewed_table.cgi", isfdb.MostReviewedTableHandler)
+	http.HandleFunc("/most_reviewed.cgi", isfdb.MostReviewedHandler)
 	http.HandleFunc("/update.cgi", isfdb.UpdateHandler)
 
 	// Legacy CGI name aliases — redirect to the canonical Go URLs so that
