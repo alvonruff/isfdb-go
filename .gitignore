@@ -1,0 +1,23 @@
+# Database files — never commit the database itself
+isfdb.db
+isfdb.db-shm
+isfdb.db-wal
+isfdb.db.new
+isfdb.db.old
+user_data.db
+user_data.db-shm
+user_data.db-wal
+
+# Compiled binary
+isfdb-go
+server
+
+# Vim swap files
+*.swp
+*.swo
+
+# macOS metadata
+.DS_Store
+
+# Go build cache artifacts
+/tmp/

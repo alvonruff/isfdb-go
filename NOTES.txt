@@ -1,0 +1,125 @@
+Substantial experiment with Claude Code to port the SQLlite/Python version of the desktop ISFDB to the
+go programming language.  Rather than working in a manager/subordinate relationship, the goal was to 
+have a more collaborative pair-programming approach. As such, work was divided into smaller sized chunks 
+of the size I would personally have worked on, if doing the port myself. Examples:
+
+- instead of printing a list of publications, put the publications in a table, with the following columns.
+- Add support for listing Webpages below the output for title Type. 
+- Add the following SQL and formating functions
+- Using the previous SQL and formatting functions, add Notes and Synopsis to the title handler
+
+Each subtask might require 5 to 10 question/answers.  I would need to supply Python code snippets, or 
+guidance as to which python function in a large file to port to go. This would result in many dozens of 
+commands per day, rather than one huge vibe-coding prompt. If the amount of code to be ported was under 100
+LOC, then Claude Code worked mostly flawlessly. It did not, however, have the ability to see the rendered
+text, so I was a necessary meat puppet in order to provide visual feedback from browser results.
+
+# JOURNAL
+
+6/20/16 - Added support to update the database
+         * Project cleanup before Initial Checkin
+         * Project LOC: 15707
+
+6/13/26 - Tweaked index.cgi, and added view history of pages to the navbar.
+         * Project LOC: 14804
+         * Moved on to award_directory.cgi
+         * Project LOC: 14849
+         * Moved on to calendar_menu.cgi and calendar_day.cgi. There were some CSS issues with
+           this implementation. And since Claude can't actually see what's wrong, after several
+           rounds of attempts to fix it, I finally modified the CSS by hand.
+         * Project LOC: 15058
+
+6/12/26 - Started on bringing in the navbar code.
+         * Project LOC: 10666. As reference, the python-based desktop project has 10434 LOC
+         * Moved on to se.cgi
+         * Project LOC: 12092
+         * Moved on to directory.cgi
+         * Project LOC: 12733
+         * Moved on to adv_search_menu.cgi
+         * Project LOC: 12821
+         * Moved on to adv_search_result.cgi
+         * Project LOC: 14504
+         * Created a new version of index.cgi
+         * Project LOC: 14693
+
+6/11/26 - Completed tweak to award_details.cgi
+         * Project LOC: 8660
+         * Moved on to ay.cgi
+         * Project LOC: 9046
+         * Moved on to award_category_year.cgi
+         * Moved on to award_category.cgi
+         * Project LOC: 9432
+         * Moved on to awardtype.cgi
+         * Project LOC: 9657
+         * Moved on to pubs_not_in_series.cgi
+         * Project LOC: 9794
+         * Moved on to note.cgi
+         * Project LOC: 10019
+         * Moved on to seriesgrid.cgi
+         * Project LOC: 10556
+
+6/10/26 - Completed cosmetic changes to publisheryear.cgi
+         * Project LOC: 7040
+         * Moved on to pubseries.cgi
+         * Project LOC: 7168
+         * Moved on to publisher_authors.cgi
+         * Project LOC: 7307
+         * Moved on to publisher_one_author.cgi
+         * Project LOC: 7466
+         * Moved on to pe.cgi
+         * Project LOC: 7886
+         * Moved on to ae.cgi
+         * Project LOC: 8109
+         * Moved on to ch.cgi
+         * Project LOC: 8315
+         * Moved on to author_awards.cgi (eaw.cgi)
+         * Project LOC: 8535
+         * Moved on to award_details.cgi
+         * Project LOC: xxxx
+
+6/9/26 - Moved on to pub.cgi
+         * Implemented the top section which includes a table, the left-hand cover art, and the right-hand publication
+           metadata.
+         * Implemented the bottom section in pretty much one fell swoop. This would be the largest successful project
+           for Claude Code to date.
+         * pub.cgi complete
+         * Project LOC: 4758
+         * Started author.cgi
+         * Implemented the top section with the author image and author metadata.
+         * Created biblio.go to handle storage of the bibliography. author.cgi completed.
+         * Project LOC: 6257
+         * Moved on to publisher.cgi
+         * Project LOC: 6536
+         * Moved on to publisheryear.cgi
+
+6/8/26 - Continued on title.cgi
+         * Big Project #1: Added support for the title Awards section
+         * Removed support for the Verif column.
+         * Big Project #2: Added support for the title Reviews section
+         * At this point the page is rather slow. about 1 second at isfdb2, 28 seconds with the go/SQLite version
+         * After several rounds of performance optimizations, execution time is down to 1.3 seconds, which feels fine
+           for a title with 91 publications (The Moon is a Harsh Mistress).
+
+6/7/26 - Continued on title.cgi
+         * Added Author/Editor links
+         * Added Publisher Names/links
+         * Added ISBN formating
+         * Added Pages formating
+         * Added Type formating
+         * Added Cover Artist retrieval and link printing
+         * Work through title Meta data: Author, Webpages, Language, Note, Synopsis
+
+6/6/26 - * Added titles struct, SQL routine to retrieve a title
+         * Restructed to split files and apps
+         * Added pubs struct, SQL routine to retrieve a pub, and a pub app
+         * Generated the list of publications a title appears in
+         * Added the existing table format for displaying that info
+         * Added support for static files.
+         * Added a CSS style sheet
+         * Added some basic layout changes to title.cgi
+
+6/5/26 - Coded a test the utilizes sqlite3 isfdb.db file from the desktop project. It:
+         * defines a author data structure
+         * connects to the database
+         * implements a version of SQLloadAuthorData
+
