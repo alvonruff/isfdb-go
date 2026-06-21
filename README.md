@@ -2,7 +2,8 @@
 This is a desktop, read-only version of the ISFDB. It is written in go, and requires no external database or web server
 installation. The goal is to provide ISFDB content to a broad audience, without relying on a public website, and has a
 far easier installation process than trying to install the full Python source with Apache and MySQL on a home Linux system.
-Note: The initial checkin has only been run on MacOS. Other operating systems will be tested in the next update.
+The desktop has been veried to run on MacOS and Linux. A Windows version requires a different sqlite driver, which has some
+notable performance issues, so that's under investigation.
 
 # Installation
 
