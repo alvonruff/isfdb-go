@@ -16,6 +16,9 @@ text, so I was a necessary meat puppet in order to provide visual feedback from 
 
 # JOURNAL
 
+6/21/16 - Moved on to stats.cgi
+         * Project LOC: 16916
+
 6/20/16 - Added support to update the database
          * Project cleanup before Initial Checkin
          * Project LOC: 15707
@@ -25,7 +28,11 @@ text, so I was a necessary meat puppet in order to provide visual feedback from 
          * Moved on to authors_by_debut_year_table.cgi
          * Project LOC: 15877
          * Moved on to popular_authors_table.cgi
-         * Project LOC: xxxx
+         * Project LOC: 16068
+         * Moved on to most_popular_table.cgi
+         * Project LOC: 16311
+         * Moved on to most_reviewed_table.cgi.
+         * Project LOC: 16485
 
 6/13/26 - Tweaked index.cgi, and added view history of pages to the navbar.
          * Project LOC: 14804
@@ -104,6 +111,7 @@ text, so I was a necessary meat puppet in order to provide visual feedback from 
          * Removed support for the Verif column.
          * Big Project #2: Added support for the title Reviews section
          * At this point the page is rather slow. about 1 second at isfdb2, 28 seconds with the go/SQLite version
+         * Moved from the modernc sqlite driver to mattn for performance reasons.
          * After several rounds of performance optimizations, execution time is down to 1.3 seconds, which feels fine
            for a title with 91 publications (The Moon is a Harsh Mistress).
 

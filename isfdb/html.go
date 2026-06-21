@@ -48,7 +48,7 @@ func HTMLheader(w io.Writer, title string) {
 	fmt.Fprintln(w, `<div id="wrap">`)
 	fmt.Fprintf(w, `<a class="topbanner" href="%s://%s/index.cgi">`+"\n", PROTOCOL, HTMLHOST)
 	fmt.Fprintln(w, `<span>`)
-        fmt.Fprintln(w, `<img src="https://www.isfdb.org/IsfdbBanner6.jpg" alt="ISFDB banner">`)
+        fmt.Fprintln(w, `<img src="https://www.isfdb.org/IsfdbBanner2.jpg" alt="ISFDB banner">`)
         fmt.Fprintln(w, `</span>`)
         fmt.Fprintln(w, `</a>`)
         fmt.Fprintln(w, `<div id="statusbar">`)
