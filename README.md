@@ -82,6 +82,14 @@ Claude Code (Claude Sonnet 4.6). The development strategy is to treat the AI as 
 I would personnaly work on, if I were programming alone. This makes the process more like a pair-programming approach, which turns out to be
 difficult with humans, but easy with an AI.
 
+# Attribution
+
+There are currently three files from the ISFDB used here:
+
+* static/biblio.css
+* static/isfdb.gif
+* static/isfdb_logo.jpg
+
 # License
 
 Background on MIT vs GPL. 
