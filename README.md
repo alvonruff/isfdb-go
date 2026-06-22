@@ -1,3 +1,4 @@
+![Project Screenshot](isfdb_desktop.png)
 
 This is a desktop, read-only version of the ISFDB. It is written in go, and requires no external database or web server
 installation. The goal is to provide ISFDB content to a broad audience, without relying on a public website, and has a
