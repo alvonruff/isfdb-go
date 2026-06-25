@@ -111,6 +111,12 @@ Example:
 | `handler_adv_search_results.go` | `/adv_search_results.cgi` — runs the advanced search and renders results |
 | `handler_update.go` | `/update.cgi` — database update status page (check / install) |
 | `handler_setup.go` | `/setup.cgi` — first-run setup page; auto-starts DB download when no `isfdb.db` present |
+| `handler_stats.go` | `/stats-and-tops.cgi` — Statistics and Top Lists menu (Author Statistics + Title Statistics sections only) |
+| `handler_debut_year.go` | `/authors_by_debut_year_table.cgi` (decade grid), `/authors_by_debut_year.cgi?YEAR` (per-year list from `authors_by_debut_date` table) |
+| `handler_popular_authors.go` | `/popular_authors_table.cgi?TYPE` (menu), `/popular_authors.cgi?TYPE+SPAN[+DECADE]` (ranked by award score via JOIN on `award_titles_report` + `canonical_author`) |
+| `handler_most_popular.go` | `/most_popular_table.cgi?TYPE` (decade+year grid), `/most_popular.cgi?TYPE+SPAN[+YEAR_OR_DECADE]` (titles ranked by award score; 4 spans: all/pre1950/decade/year) |
+| `handler_most_reviewed.go` | `/most_reviewed_table.cgi` (decade+year grid from 1900), `/most_reviewed.cgi?SPAN[+YEAR_OR_DECADE]` (titles ranked by review count from `most_reviewed` table) |
+| `handler_stats_report.go` | `/stats.cgi?N` — routes to per-report functions for reports 5, 7, 8, 16, 17, 18, 19; SVG line charts for 5/7/8, HTML tables for 16-19; generated on demand (no `reports` table in desktop DB) |
 
 ## Page Layout Conventions
 
@@ -152,13 +158,26 @@ Award levels: 1–9 = win tiers, 10–89 = nomination tiers, 90–98 = special (
 | 6/14/26 | Page history in navbar (10 entries, move-to-top, 20-char truncation); award_directory.cgi (non-ASCII sort); calendar_menu.cgi + calendar_day.cgi |
 | 6/15/26 | Database update system (update.go + handler_update.go): Google Drive download, gzip streaming, string-aware SQL import, atomic DB swap; first-run setup page (handler_setup.go) |
 | 6/16/26 | adv_search_menu.cgi; adv_search_selection.cgi; adv_search_results.cgi |
-| 6/20/26 | Copyright headers added to all Go files; README Installation section rewritten; initial GitHub push |
+| 6/20/26 | Copyright headers added to all Go files; README Installation section rewritten; initial GitHub push to https://github.com/alvonruff/isfdb-go; feature branch PR workflow established |
+| 6/25/26 | stats-and-tops.cgi; authors_by_debut_year_table/year.cgi; popular_authors_table/popular_authors.cgi; most_popular_table/most_popular.cgi; most_reviewed_table/most_reviewed.cgi; stats.cgi (reports 5,7,8,16-19 with SVG charts); Linux confirmed working |
+
+## Git Workflow
+
+This project uses feature branches and GitHub PRs:
+```bash
+git checkout -b feature/description   # start work
+git add <files> && git commit -m "..." # commit
+git push -u origin feature/description # push
+gh pr create ...                        # open PR
+# merge on GitHub, then:
+git checkout main && git pull           # sync main
+```
 
 ## What's Next
 
-The core read-only bibliography, award, search, and navigation pages are complete. Planned next work:
+All read-only CGI pages are complete — no more dangling links in the desktop app. Planned next work:
 
-- **User data database** (`user_data.db`) — a second SQLite file for per-user state
+- **User data database** (`user_data.db`) — a second SQLite file for per-user state (schema design in progress)
 - **Book collection / reading list** — track personal reading against ISFDB records
 - **User preferences** — theme, display options stored in the user DB
 
