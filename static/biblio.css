@@ -1395,7 +1395,9 @@ a.button {
 #homepage_birthdays {
    margin: 1em auto;
    max-width: 900px;
-   text-align: center;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
 }
 
 #homepage_birthdays h3 {

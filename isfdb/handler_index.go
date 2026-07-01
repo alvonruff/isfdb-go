@@ -20,17 +20,17 @@ type BirthdayAuthor struct {
 	ImageURL   string
 }
 
-// SQLGetTodaysBirthdayAuthors returns living marque authors who have a photo
-// and whose birthday falls on today's month/day.
-func SQLGetTodaysBirthdayAuthors(db *sql.DB) ([]*BirthdayAuthor, error) {
+// birthdayAuthorQuery runs a shared birthday author query with the given
+// extra WHERE clause fragment and returns matching authors.
+func birthdayAuthorQuery(db *sql.DB, extraWhere string) ([]*BirthdayAuthor, error) {
 	rows, err := db.Query(`
 		SELECT author_id, author_canonical, author_birthdate, author_image
 		FROM authors
-		WHERE author_marque = 1
-		  AND author_image IS NOT NULL
+		WHERE author_image IS NOT NULL
 		  AND author_image != ''
 		  AND author_deathdate IS NULL
 		  AND substr(author_birthdate, 6, 5) = strftime('%m-%d', 'now')
+		  ` + extraWhere + `
 		ORDER BY author_lastname, author_canonical`)
 	if err != nil {
 		return nil, err
@@ -50,6 +50,29 @@ func SQLGetTodaysBirthdayAuthors(db *sql.DB) ([]*BirthdayAuthor, error) {
 		results = append(results, &a)
 	}
 	return results, rows.Err()
+}
+
+// SQLGetTodaysBirthdayAuthors returns birthday authors for today using two
+// strategies, tried in order:
+//  1. Authors who have a Wikipedia page (url contains 'wikipedia.org')
+//  2. Fallback: authors flagged as marquee authors
+func SQLGetTodaysBirthdayAuthors(db *sql.DB) ([]*BirthdayAuthor, error) {
+	// Strategy 1: authors with a Wikipedia page.
+	results, err := birthdayAuthorQuery(db, `
+		AND EXISTS (
+			SELECT 1 FROM webpages
+			WHERE webpages.author_id = authors.author_id
+			  AND webpages.url LIKE '%wikipedia.org%'
+		)`)
+	if err != nil {
+		return nil, err
+	}
+	if len(results) > 0 {
+		return results, nil
+	}
+
+	// Strategy 2: marquee authors.
+	return birthdayAuthorQuery(db, "AND author_marque = 1")
 }
 
 // IndexHandler serves /index.cgi — the ISFDB home page.
@@ -94,10 +117,15 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 
 	// ── Birthday authors ──────────────────────────────────────────────────
 	authors, err := SQLGetTodaysBirthdayAuthors(DB)
-	if err == nil && len(authors) > 0 {
-		today := time.Now().Format("January 2")
+	today := time.Now().Format("January 2")
+	if err == nil && len(authors) == 0 {
+		fmt.Fprintf(w, "<div id=\"homepage_birthdays\">\n")
+		fmt.Fprintf(w, "<h3>No notable author birthdays on %s</h3>\n", today)
+		fmt.Fprintln(w, `</div>`)
+	} else if err == nil {
 		fmt.Fprintf(w, "<div id=\"homepage_birthdays\">\n")
 		fmt.Fprintf(w, "<h3>Select living authors born on this day, %s</h3>\n", today)
+		fmt.Fprintln(w, `<div style="display:flex;justify-content:center">`)
 		fmt.Fprintln(w, `<table cellspacing="6">`)
 
 		// Row 1: photos
@@ -126,6 +154,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, `</tr>`)
 
 		fmt.Fprintln(w, `</table>`)
+		fmt.Fprintln(w, `</div>`) // flex centering wrapper
 		// Link to the full calendar day page.
 		fmt.Fprintf(w, "<p class=\"bottomlinks\"><a href=\"%s://%s/calendar_day.cgi?%d+%d\">View all authors born or who died on this day</a></p>\n",
 			PROTOCOL, HTMLHOST, int(time.Now().Month()), time.Now().Day())
