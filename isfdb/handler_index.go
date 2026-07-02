@@ -126,32 +126,48 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "<div id=\"homepage_birthdays\">\n")
 		fmt.Fprintf(w, "<h3>Select living authors born on this day, %s</h3>\n", today)
 		fmt.Fprintln(w, `<div style="display:flex;justify-content:center">`)
+		const rowSize = 6
 		fmt.Fprintln(w, `<table cellspacing="6">`)
 
-		// Row 1: photos
-		fmt.Fprintln(w, `<tr>`)
-		for _, a := range authors {
-			fmt.Fprintf(w, "<td style=\"background-color:black\"><img src=\"%s\" alt=\"%s\" class=\"covermainpage\" style=\"width:135px\"></td>\n",
-				a.ImageURL, ISFDBText(a.Canonical))
-		}
-		fmt.Fprintln(w, `</tr>`)
+		for start := 0; start < len(authors); start += rowSize {
+			end := start + rowSize
+			if end > len(authors) {
+				end = len(authors)
+			}
+			chunk := authors[start:end]
 
-		// Row 2: names (with birth year and age)
-		fmt.Fprintln(w, `<tr>`)
-		for _, a := range authors {
-			age := ""
-			if len(a.BirthDate) >= 4 {
-				if birthYear := parseInt(a.BirthDate[:4]); birthYear > 0 {
-					age = fmt.Sprintf("%d", time.Now().Year()-birthYear)
+			// Photo row
+			fmt.Fprintln(w, `<tr>`)
+			for _, a := range chunk {
+				fmt.Fprintf(w, "<td style=\"background-color:black\"><img src=\"%s\" alt=\"%s\" class=\"covermainpage\" style=\"width:135px\"></td>\n",
+					a.ImageURL, ISFDBText(a.Canonical))
+			}
+			// Pad remaining slots
+			for i := len(chunk); i < rowSize; i++ {
+				fmt.Fprintln(w, "<td></td>")
+			}
+			fmt.Fprintln(w, `</tr>`)
+
+			// Name row
+			fmt.Fprintln(w, `<tr>`)
+			for _, a := range chunk {
+				age := ""
+				if len(a.BirthDate) >= 4 {
+					if birthYear := parseInt(a.BirthDate[:4]); birthYear > 0 {
+						age = fmt.Sprintf("%d", time.Now().Year()-birthYear)
+					}
 				}
+				fmt.Fprintf(w, "<td><a href=\"/author.cgi?%d\">%s</a>", a.AuthorID, ISFDBText(a.Canonical))
+				if age != "" {
+					fmt.Fprintf(w, "<br><small>b. %s (age %s)</small>", ISFDBText(a.BirthDate[:4]), age)
+				}
+				fmt.Fprintln(w, `</td>`)
 			}
-			fmt.Fprintf(w, "<td><a href=\"/author.cgi?%d\">%s</a>", a.AuthorID, ISFDBText(a.Canonical))
-			if age != "" {
-				fmt.Fprintf(w, "<br><small>b. %s (age %s)</small>", ISFDBText(a.BirthDate[:4]), age)
+			for i := len(chunk); i < rowSize; i++ {
+				fmt.Fprintln(w, "<td></td>")
 			}
-			fmt.Fprintln(w, `</td>`)
+			fmt.Fprintln(w, `</tr>`)
 		}
-		fmt.Fprintln(w, `</tr>`)
 
 		fmt.Fprintln(w, `</table>`)
 		fmt.Fprintln(w, `</div>`) // flex centering wrapper
