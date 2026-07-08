@@ -465,6 +465,16 @@ div.ContentBox {
 	padding-left: 20px;
 	padding-right: 5px;
 }
+div.ContentBoxEdit {
+	background: #C7DBFF;
+	border: 1px solid black;
+	margin-top: 5px;
+	margin-bottom: 5px;
+        padding-top: 10px;
+	padding-bottom: 7px;
+	padding-left: 20px;
+	padding-right: 5px;
+}
 
 div.VerificationBox {
 	background: #fff; 
@@ -788,6 +798,16 @@ tr.generic_centered_header {
 table.generic_table {
    background-color: #FFFFFF;
    padding: 0px;
+}
+
+table.collection_table {
+   background-color: #FFFFFF;
+   padding: 0px;
+}
+
+table.collection_table td, table.collection_table th {
+   padding-left: 8px;
+   padding-right: 8px;
 }
 
 /* table row design of generic table */

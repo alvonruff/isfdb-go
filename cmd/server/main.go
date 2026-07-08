@@ -38,6 +38,11 @@ func main() {
 	}
 	defer isfdb.DBclose()
 
+	if err := isfdb.UserDBOpen(); err != nil {
+		log.Fatal(err)
+	}
+	defer isfdb.UserDBClose()
+
 	// Check for available DB update in the background at startup.
 	go isfdb.CheckForUpdate()
 
@@ -71,6 +76,14 @@ func main() {
 	http.HandleFunc("/adv_search_selection.cgi", isfdb.AdvSearchSelectionHandler)
 	http.HandleFunc("/adv_search_results.cgi", isfdb.AdvSearchResultsHandler)
 	http.HandleFunc("/adv_search_result.cgi", isfdb.AdvSearchResultsHandler)
+	http.HandleFunc("/collection_new.cgi", isfdb.CollectionNewHandler)
+	http.HandleFunc("/collection_submitnew.cgi", isfdb.CollectionSubmitNewHandler)
+	http.HandleFunc("/collection_list.cgi", isfdb.CollectionListHandler)
+	http.HandleFunc("/collection_view.cgi", isfdb.CollectionViewHandler)
+	http.HandleFunc("/collection_edit.cgi", isfdb.CollectionEditHandler)
+	http.HandleFunc("/collection_submitedit.cgi", isfdb.CollectionSubmitEditHandler)
+	http.HandleFunc("/collection_search.cgi", isfdb.CollectionSearchHandler)
+	http.HandleFunc("/collection_slist.cgi", isfdb.CollectionSlistHandler)
 	http.HandleFunc("/stats-and-tops.cgi", isfdb.StatsHandler)
 	http.HandleFunc("/stats.cgi", isfdb.StatsReportHandler)
 	http.HandleFunc("/authors_by_debut_year_table.cgi", isfdb.AuthorsByDebutYearTableHandler)

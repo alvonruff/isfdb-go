@@ -16,10 +16,29 @@ text, so I was a necessary meat puppet in order to provide visual feedback from 
 
 # JOURNAL
 
-6/21/16 - Moved on to stats.cgi
+7/08/26 - Wrapped up the cosmetic issues with the book collection feature.
+         * Project LOC: 17952
+
+7/06/26 - Worked on cosmetic issues with the book collection feature.
+         * Project LOC: 17924
+
+7/05/26 - Continued on the book collection feature. Consists of:
+         * collection_view.cgi - view a specific item in the collection
+         * collection_edit.cgi - edit a specific item in the collection
+
+7/04/26 - Started on the book collection feature. Consists of:
+         * collection_new.cgi - Add a work to the user's collection, with additional user data.
+         * collection_submitnew.cgi - Update the database
+         * collection_list.cgi - list the user's collection
+
+7/01/26 - Changed frontpage algorithm to trigger brithday authors on presence of a Wikipedia article
+          rather than being a marque author.
+         * Project LOC: 16945
+
+6/21/26 - Moved on to stats.cgi
          * Project LOC: 16916
 
-6/20/16 - Added support to update the database
+6/20/26 - Added support to update the database
          * Project cleanup before Initial Checkin
          * Project LOC: 15707
          * Performed first checkin to isfdb-go on GitHub.

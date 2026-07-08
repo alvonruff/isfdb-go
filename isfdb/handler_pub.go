@@ -28,7 +28,7 @@ func PubHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", fmt.Sprintf("text/html; charset=%s", UNICODE))
 	RecordHistory("Pub", p.PubTitle.String, r.URL.RequestURI())
 	HTMLheader(w, p.PubTitle.String)
-	PrintNavbar(w, "publication", "", "")
+	PrintNavbar(w, "publication", "", "", NavContext{CollectionPubID: id})
 
 	// ── Publication ContentBox ────────────────────────────────────────────
 	fmt.Fprintln(w, `<div class="ContentBox">`)

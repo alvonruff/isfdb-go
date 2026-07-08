@@ -48,12 +48,25 @@ var contentDivPageTypes = map[string]bool{
 //
 // searchValue and searchType pre-fill the search box (pass "" for both on
 // pages that are not search results).
-func PrintNavbar(w io.Writer, pageType, searchValue, searchType string) {
+// NavContext carries optional per-page context into the navbar.
+// Pass as the last argument to PrintNavbar; omit on pages that need none.
+type NavContext struct {
+	CollectionPubID  int // > 0 on pub.cgi — shows "Add Pub to Collection"
+	CollectionItemID int // > 0 on collection_view.cgi — shows "Edit Collection Item"
+	ShowCollection   bool // true on any collection page — shows "Search Collection"
+}
+
+func PrintNavbar(w io.Writer, pageType, searchValue, searchType string, ctx ...NavContext) {
 	fmt.Fprintln(w, `<div id="nav">`)
 
 	printNavSearchBox(w, pageType, searchValue, searchType)
 	printNavOtherPages(w, pageType)
 	printNavHistory(w)
+	var navCtx NavContext
+	if len(ctx) > 0 {
+		navCtx = ctx[0]
+	}
+	printNavCollection(w, navCtx)
 	printNavLicense(w)
 
 	fmt.Fprintln(w, `</div>`) // end nav
@@ -64,6 +77,25 @@ func PrintNavbar(w io.Writer, pageType, searchValue, searchType string) {
 	} else {
 		fmt.Fprintln(w, `<div id="main">`)
 	}
+}
+
+// printNavCollection renders the My Collection navbar section.
+func printNavCollection(w io.Writer, ctx NavContext) {
+	fmt.Fprintln(w, `<div class="divider">`)
+	fmt.Fprintln(w, `My Collection:`)
+	fmt.Fprintln(w, `</div>`)
+	fmt.Fprintln(w, `<ul class="navbar">`)
+	if ctx.CollectionPubID > 0 {
+		fmt.Fprintf(w, "<li><a href=\"%s://%s/collection_new.cgi?%d\">Add Pub to Collection</a>\n",
+			PROTOCOL, HTMLHOST, ctx.CollectionPubID)
+	}
+	if ctx.CollectionItemID > 0 {
+		fmt.Fprintf(w, "<li><a href=\"%s://%s/collection_edit.cgi?%d\">Edit Collection Item</a>\n",
+			PROTOCOL, HTMLHOST, ctx.CollectionItemID)
+	}
+	fmt.Fprintf(w, "<li><a href=\"%s://%s/collection_list.cgi\">My Collection</a>\n", PROTOCOL, HTMLHOST)
+	fmt.Fprintf(w, "<li><a href=\"%s://%s/collection_search.cgi\">Search Collection</a>\n", PROTOCOL, HTMLHOST)
+	fmt.Fprintln(w, `</ul>`)
 }
 
 // printNavSearchBox renders the logo and (on non-frontpage) the search form.
