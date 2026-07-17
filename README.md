@@ -11,7 +11,10 @@ The desktop has been veried to run on MacOS, Linux, and Windows (only under WSL)
 
 - [Go](https://go.dev/dl/) 1.21 or later
 - On MacOS:
-   TBD
+```
+   xcode-select --install
+   Visit: https://go.dev/dl/ download the MacOS Installer package, and install)
+```
 - On Linux:
 ```
    sudo apt install libgtk-3-dev pkg-config
