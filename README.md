@@ -13,9 +13,11 @@ The desktop has been veried to run on MacOS, Linux, and Windows (only under WSL)
 - On MacOS:
    TBD
 - On Linux:
+```
    sudo apt install libgtk-3-dev pkg-config
    sudo apt install libwebkit2gtk-4.1-0
    sudo apt install golang-go
+```
 
 ## Steps
 
