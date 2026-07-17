@@ -10,9 +10,12 @@ The desktop has been veried to run on MacOS, Linux, and Windows (only under WSL)
 ## Prerequisites
 
 - [Go](https://go.dev/dl/) 1.21 or later
-- A C compiler (required by the SQLite driver): on macOS this is provided by Xcode Command Line Tools (`xcode-select --install`); on Linux, `gcc` via your package manager.
-- On Linux and WSL:
-  sudo apt install golang-go
+- On MacOS:
+   TBD
+- On Linux:
+   sudo apt install libgtk-3-dev pkg-config
+   sudo apt install libwebkit2gtk-4.1-0
+   sudo apt install golang-go
 
 ## Steps
 
