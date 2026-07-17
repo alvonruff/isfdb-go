@@ -31,28 +31,16 @@ The desktop has been veried to run on MacOS, Linux, and Windows (only under WSL)
    cd isfdb-go
    ```
 
-2. **Run the server**
+2. **Run the app**
    ```
-   go run ./cmd/server
+   make
+   ./app
    ```
-   On first run, no database is present. The server will start in setup mode and print the local address to the terminal.
-
-3. **Download the database**
-
-   Open a browser and navigate to `http://localhost:8080`. You will be taken to the setup page, which automatically begins downloading and importing the ISFDB SQLite database from Google Drive. The download is several hundred megabytes; import may take a minute or two depending on your hardware.
-
-4. **Restart the server**
-
-   Once the setup page reports that the import is complete, stop the server (`Ctrl-C`) and run it again:
-   ```
-   go run ./cmd/server
-   ```
-   The server is now ready. Point your browser to `http://localhost:8080` to browse the ISFDB.
+   On first run, no database is present. The server will start in setup mode, then download and install a database.
 
 ## Keeping the database current
 
-Navigate to `http://localhost:8080/update.cgi` at any time to check for a newer database snapshot and install it. The server must be restarted after an update completes.
-
+Navigate to [Database Update] in the navbar.
 
 # Motivation
 
