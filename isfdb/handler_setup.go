@@ -11,10 +11,12 @@ import (
 
 // SetupHandler serves /setup.cgi — the first-run page shown when no database
 // exists. It auto-starts the download on the first GET and shows live progress
-// with auto-refresh until complete.
+// with auto-refresh until complete. Once the download finishes, runUpdate()
+// calls ActivateAppRoutes() to swap in the full mux, after which the next
+// auto-refresh of /setup.cgi redirects to /index.cgi via the full mux.
 func SetupHandler(w http.ResponseWriter, r *http.Request) {
 	// Auto-start the download if nothing is running yet.
-	if s, _, _, _, r := Upd.Snapshot(); !r && s == UpdateIdle {
+	if s, _, _, _, running := Upd.Snapshot(); !running && s == UpdateIdle {
 		StartUpdate()
 	}
 
@@ -25,22 +27,22 @@ func SetupHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, `<!DOCTYPE html>`)
 	fmt.Fprintln(w, `<html><head>`)
 	fmt.Fprintln(w, `<meta charset="utf-8">`)
-	fmt.Fprintln(w, `<title>The Desktop ISFDB — First Run Setup</title>`)
+	fmt.Fprintln(w, `<title>The Desktop SF Database — First Run Setup</title>`)
 	fmt.Fprintf(w, "<link rel=\"stylesheet\" href=\"%s://%s/biblio.css\">\n", PROTOCOL, HTMLHOST)
 
-	if running {
+	if running || status == UpdateDone {
 		fmt.Fprintln(w, `<meta http-equiv="refresh" content="3">`)
 	}
 
 	fmt.Fprintln(w, `</head><body>`)
 	fmt.Fprintln(w, `<div id="main">`)
-	fmt.Fprintln(w, `<h1>The Desktop ISFDB</h1>`)
+	fmt.Fprintln(w, `<h1>The Desktop SF Database</h1>`)
 	fmt.Fprintln(w, `<h2>First Run Setup</h2>`)
 
 	switch status {
 	case UpdateDone:
 		fmt.Fprintln(w, `<p style="color:green"><b>Download complete!</b></p>`)
-		fmt.Fprintln(w, `<p>The database has been installed. Please restart the server to continue.</p>`)
+		fmt.Fprintln(w, `<p>Loading database…</p>`)
 
 	case UpdateError:
 		fmt.Fprintf(w, "<p style=\"color:red\"><b>Error:</b> %s</p>\n", ISFDBText(msg))

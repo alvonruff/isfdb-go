@@ -53,7 +53,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 			http.Redirect(w, r, fmt.Sprintf("/author.cgi?%d", results[0].AuthorID), http.StatusFound)
 			return
 		}
-		HTMLheader(w, "ISFDB Name search")
+		HTMLheader(w, "Name Search")
 		PrintNavbar(w, "search", searchValue, searchType)
 		printSearchSummary(w, arg, len(results), "Author", "author")
 		if len(results) > 0 {
@@ -77,7 +77,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 			http.Redirect(w, r, fmt.Sprintf("/title.cgi?%d", results[0].TitleID), http.StatusFound)
 			return
 		}
-		HTMLheader(w, "ISFDB Fiction Title search")
+		HTMLheader(w, "Fiction Title Search")
 		PrintNavbar(w, "search", searchValue, searchType)
 		printSearchSummary(w, arg, len(results), "Title", "title")
 		printWholeWordNote(w)
@@ -102,7 +102,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 			http.Redirect(w, r, fmt.Sprintf("/title.cgi?%d", results[0].TitleID), http.StatusFound)
 			return
 		}
-		HTMLheader(w, "ISFDB Title search")
+		HTMLheader(w, "Title Search")
 		PrintNavbar(w, "search", searchValue, searchType)
 		printSearchSummary(w, arg, len(results), "Title", "title")
 		printWholeWordNote(w)
@@ -128,7 +128,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 			http.Redirect(w, r, fmt.Sprintf("/title.cgi?%d", results[0].TitleID), http.StatusFound)
 			return
 		}
-		HTMLheader(w, "ISFDB Year of Title search")
+		HTMLheader(w, "Year of Title Search")
 		PrintNavbar(w, "search", searchValue, searchType)
 		printSearchSummary(w, arg, len(results), "Title", "title")
 		if len(results) > 0 {
@@ -151,7 +151,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 			http.Redirect(w, r, fmt.Sprintf("/title.cgi?%d", results[0].TitleID), http.StatusFound)
 			return
 		}
-		HTMLheader(w, "ISFDB Month of Title search")
+		HTMLheader(w, "Month of Title Search")
 		PrintNavbar(w, "search", searchValue, searchType)
 		printSearchSummary(w, arg, len(results), "Title", "title")
 		if len(results) > 0 {
@@ -172,7 +172,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 			printSearchError(w, "Database error", searchValue, searchType)
 			return
 		}
-		HTMLheader(w, "ISFDB Publication Month search")
+		HTMLheader(w, "Publication Month Search")
 		PrintNavbar(w, "search", searchValue, searchType)
 		printSearchSummary(w, arg, len(results), "Publication", "pub")
 		if len(results) > 0 {
@@ -190,7 +190,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 			http.Redirect(w, r, fmt.Sprintf("/pe.cgi?%d", results[0].SeriesID), http.StatusFound)
 			return
 		}
-		HTMLheader(w, "ISFDB Series search")
+		HTMLheader(w, "Series Search")
 		PrintNavbar(w, "search", searchValue, searchType)
 		printSearchSummary(w, arg, len(results), "Series", "series")
 		if len(results) > 0 {
@@ -210,7 +210,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 			http.Redirect(w, r, fmt.Sprintf("/pe.cgi?%d", results[0].SeriesID), http.StatusFound)
 			return
 		}
-		HTMLheader(w, "ISFDB Magazine search")
+		HTMLheader(w, "Magazine Search")
 		PrintNavbar(w, "search", searchValue, searchType)
 		printSearchSummary(w, arg, len(results), "Title", "title")
 		if len(results) > 0 {
@@ -232,7 +232,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 			http.Redirect(w, r, fmt.Sprintf("/publisher.cgi?%d", results[0].PublisherID), http.StatusFound)
 			return
 		}
-		HTMLheader(w, "ISFDB Publisher search")
+		HTMLheader(w, "Publisher Search")
 		PrintNavbar(w, "search", searchValue, searchType)
 		printSearchSummary(w, arg, len(results), "Publisher", "publisher")
 		if len(results) > 0 {
@@ -252,7 +252,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 			http.Redirect(w, r, fmt.Sprintf("/pubseries.cgi?%d", results[0].PubSeriesID), http.StatusFound)
 			return
 		}
-		HTMLheader(w, "ISFDB Publication Series search")
+		HTMLheader(w, "Publication Series Search")
 		PrintNavbar(w, "search", searchValue, searchType)
 		printSearchSummary(w, arg, len(results), "Publication Series", "pub_series")
 		if len(results) > 0 {
@@ -277,7 +277,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 			http.Redirect(w, r, fmt.Sprintf("/pub.cgi?%d", results[0].PubID), http.StatusFound)
 			return
 		}
-		HTMLheader(w, "ISFDB ISBN search")
+		HTMLheader(w, "ISBN Search")
 		PrintNavbar(w, "search", searchValue, searchType)
 		printSearchSummary(w, arg, len(results), "Publication", "pub")
 		if len(results) > 0 {
@@ -295,7 +295,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 			// Tags don't have their own CGI yet; fall through to results page.
 			_ = results
 		}
-		HTMLheader(w, "ISFDB Tag search")
+		HTMLheader(w, "Tag Search")
 		PrintNavbar(w, "search", searchValue, searchType)
 		printSearchSummary(w, arg, len(results), "Tag", "tag")
 		if len(results) > 0 {
@@ -313,7 +313,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 			http.Redirect(w, r, fmt.Sprintf("/awardtype.cgi?%d", results[0].AwardTypeID), http.StatusFound)
 			return
 		}
-		HTMLheader(w, "ISFDB Award search")
+		HTMLheader(w, "Award Search")
 		PrintNavbar(w, "search", searchValue, searchType)
 		printSearchSummary(w, arg, len(results), "Award Type", "award_type")
 		if len(results) > 0 {
@@ -333,7 +333,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 
 func printSearchError(w http.ResponseWriter, msg, searchValue, searchType string) {
 	w.Header().Set("Content-Type", fmt.Sprintf("text/html; charset=%s", UNICODE))
-	HTMLheader(w, "ISFDB Search Error")
+	HTMLheader(w, "Search Error")
 	PrintNavbar(w, "search", searchValue, searchType)
 	fmt.Fprintf(w, "<h2>%s</h2>\n", ISFDBText(msg))
 	fmt.Fprintln(w, `</div>`)

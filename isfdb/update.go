@@ -154,6 +154,8 @@ func StartUpdate() bool {
 }
 
 func runUpdate() {
+	firstRun := DB == nil // true when called from setup (no DB open yet)
+
 	defer func() {
 		Upd.mu.Lock()
 		Upd.Running = false
@@ -215,9 +217,24 @@ func runUpdate() {
 	}
 	os.Remove(oldPath)
 
+	// Hot-reload the database. First-run needs the full activation (opens
+	// user_data.db and swaps the mux); updates just reopen the connection.
+	if firstRun {
+		if err := ActivateAppRoutes(); err != nil {
+			Upd.set(UpdateError, fmt.Sprintf("Database installed but activation failed: %v — please restart.", err))
+			return
+		}
+		go CheckForUpdate()
+	} else {
+		if err := DBReopen(); err != nil {
+			Upd.set(UpdateError, fmt.Sprintf("Database swapped but reload failed: %v — please restart.", err))
+			return
+		}
+	}
+
 	Upd.mu.Lock()
 	Upd.Status = UpdateDone
-	Upd.Message = fmt.Sprintf("Database updated to %s. Please restart the server to load the new data.", meta.UploadDate)
+	Upd.Message = fmt.Sprintf("Database updated to %s.", meta.UploadDate)
 	Upd.Available = false
 	Upd.NewDate = ""
 	Upd.mu.Unlock()

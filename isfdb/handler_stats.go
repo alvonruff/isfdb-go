@@ -11,7 +11,7 @@ import (
 
 // StatsHandler serves /stats-and-tops.cgi — the Statistics and Top Lists menu.
 func StatsHandler(w http.ResponseWriter, r *http.Request) {
-	HTMLheader(w, "ISFDB Statistics and Top Lists")
+	HTMLheader(w, "Statistics and Top Lists")
 	PrintNavbar(w, "stats", "", "")
 
 	fmt.Fprintln(w, "<h4>Author Statistics</h4>")

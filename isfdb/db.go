@@ -72,6 +72,13 @@ func DBclose() {
 	}
 }
 
+// DBReopen closes the current connection and reopens it from DBPath.
+// Used after a live database swap so no server restart is needed.
+func DBReopen() error {
+	DBclose()
+	return DBopen()
+}
+
 // ParseID extracts a record ID from a request.
 // Supports both bare query (?112750) and keyed query (?id=112750).
 func ParseID(r *http.Request) (int, error) {

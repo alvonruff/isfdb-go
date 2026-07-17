@@ -82,7 +82,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 
 	// ── Search bar ────────────────────────────────────────────────────────
 	fmt.Fprintln(w, `<div id="homepage_search">`)
-	fmt.Fprintln(w, `<h1>The Desktop ISFDB</h1>`)
+	fmt.Fprintln(w, `<h1>The Desktop SF Database</h1>`)
 	fmt.Fprintf(w, "<form method=\"get\" action=\"%s://%s/se.cgi\" id=\"homepage_form\" onsubmit=\"return homepageSubmit(this)\">\n", PROTOCOL, HTMLHOST)
 	fmt.Fprintln(w, `<div class="homepage_search_row">`)
 	fmt.Fprintf(w, "<select name=\"type\" id=\"homepage_type\" class=\"homepage_search_select\" onchange=\"homepageTypeChange(this, '%s://%s/adv_search_menu.cgi')\">\n", PROTOCOL, HTMLHOST)
@@ -91,7 +91,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Fprintf(w, "<option value=\"__advsearch__\">Advanced Search</option>\n")
 	fmt.Fprintln(w, `</select>`)
-	fmt.Fprintln(w, `<input name="arg" id="homepage_search_arg" class="homepage_search_input" placeholder="Search the ISFDB…" autofocus>`)
+	fmt.Fprintln(w, `<input name="arg" id="homepage_search_arg" class="homepage_search_input" placeholder="Search the Database…" autofocus>`)
 	fmt.Fprintln(w, `<input value="Search" type="submit" class="homepage_search_button">`)
 	fmt.Fprintln(w, `</div>`)
 	fmt.Fprintln(w, `</form>`)
@@ -180,7 +180,6 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	// ── DB sync notice ────────────────────────────────────────────────────
 	fmt.Fprintln(w, `<hr>`)
 	fmt.Fprintln(w, `<div id="isfdb_notice">`)
-	fmt.Fprintln(w, `<p>A community effort to catalog works of science fiction, fantasy, and horror.</p>`)
 	if info, err := os.Stat(DBPath); err == nil {
 		fmt.Fprintf(w, "<p>Database last updated: %s</p>\n",
 			info.ModTime().Format("January 2, 2006"))
