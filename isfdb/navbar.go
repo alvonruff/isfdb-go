@@ -163,15 +163,12 @@ func printNavOtherPages(w io.Writer, pageType string) {
 
 // printNavHistory renders the recent-page history section of the nav bar.
 func printNavHistory(w io.Writer) {
-	entries := GetHistory()
-	if len(entries) == 0 {
-		return
-	}
 	fmt.Fprintln(w, `<div class="divider">`)
 	fmt.Fprintln(w, `History:`)
 	fmt.Fprintln(w, `</div>`)
 	fmt.Fprintln(w, `<ul class="navbar">`)
-	for _, e := range entries {
+	fmt.Fprintln(w, `<li><a href="javascript:history.back()">Back</a>`)
+	for _, e := range GetHistory() {
 		fmt.Fprintf(w, "<li><a href=\"%s\">%s: %s</a>\n", e.URL, e.Label, ISFDBText(e.Name))
 	}
 	fmt.Fprintln(w, `</ul>`)
