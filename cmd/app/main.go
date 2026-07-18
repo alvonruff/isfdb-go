@@ -185,6 +185,18 @@ func openWindow(url string) {
 				}
 				if (e.key === 'Escape' && bar.style.display !== 'none') close();
 			});
+
+			// On macOS the app has no NSMenu, so Cmd+C/X/V/A never reach a
+			// native handler and the OS beeps. Intercept them here instead.
+			document.addEventListener('keydown', function(e) {
+				if (!e.metaKey) return;
+				switch (e.key) {
+					case 'a': document.execCommand('selectAll'); e.preventDefault(); break;
+					case 'c': document.execCommand('copy');      e.preventDefault(); break;
+					case 'x': document.execCommand('cut');       e.preventDefault(); break;
+					case 'v': document.execCommand('paste');     e.preventDefault(); break;
+				}
+			});
 		})();
 
 		document.addEventListener('click', function(e) {
