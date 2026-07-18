@@ -25,15 +25,15 @@ The desktop has been veried to run on MacOS, Linux, and Windows (only under WSL)
 
 ## Steps
 
-1. **Clone the repository**
+1. **Build the App and Server**
    ```
    git clone https://github.com/alvonruff/isfdb-go.git
    cd isfdb-go
+   make
    ```
 
-2. **Run the app**
+2. **Run the Standalone App**
    ```
-   make
    ./app
    ```
    On first run, no database is present. The server will start in setup mode, then download and install a database.
