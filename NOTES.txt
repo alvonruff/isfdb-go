@@ -17,6 +17,7 @@ text, so I was a necessary meat puppet in order to provide visual feedback from 
 # JOURNAL
 
 7/16/26 - Introduced webview to make this a standalone app, adding 'Back' as a navigation function.
+         * Created a search function that was lost by moving to a webview app.
          * Project LOC: 18096
 
 7/08/26 - Wrapped up the cosmetic issues with the book collection feature.

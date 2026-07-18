@@ -33,22 +33,6 @@ div.divider {
    font-weight:bold;
 }
 
-div.newtalk {
-   background: #FFFF00;
-   color: #000000;
-   margin-top: 2px;
-   margin-bottom: 2px;
-   padding: 2px;
-}
-
-div.quicktag {
-   margin-top: 2px;
-}
-
-div.translationmessage {
-   margin-bottom: 2px;
-}
-
 div.generic_centered_div {
    text-align:center;
 }
@@ -158,22 +142,6 @@ div#search img {
 div#search form {
    margin-top:  5px;
 }
-
-div#fsearch {
-   color: #000; 
-   text-align: center; 
-   font-size: 100%; 
-   font-weight: bold; 
-   background: #fff;
-   border: 1px solid black;
-   margin-bottom: 5px; 
-   padding-top: 5px;
-   padding-bottom: 5px;
-}
-div#fsearch form {
-   margin-top: 5px;
-   margin-bottom: 5px;
-}
 div#cclicense {
    margin-top: 10px;
    text-align: center; 
@@ -232,27 +200,9 @@ td.drop {
    font-size: 100%; 
 }
 
-/* moderator review tables warning */
-td.warn {
-   background: yellow;
-}
-
-/* blank warning cell */
-td.blankwarning {
-   background: #C7DBFF;
-}
-
 /* blank info cell */
 td.info	{
    background: #C7DBFF;
-}
-
-th.verifiers_user {
-   width: 15%;
-}
-
-th.publication_checkbox {
-   width: 2%;
 }
 
 th.publication_series_number {
@@ -261,10 +211,6 @@ th.publication_series_number {
 
 th.publication_title {
    width: 15%;
-}
-
-th.publication_title_short {
-   width: 13%;
 }
 
 th.publication_date {
@@ -303,26 +249,8 @@ th.publication_cover_artist {
    width: 10%;
 }
 
-th.publication_verif {
-   width: 3%;
-}
-
 th.publication_cover {
    width: 6%;
-}
-
-/* verifiers table design */
-table.verifiers {
-   table-layout:fixed;
-   width: 100%;
-   margin-left:5px;
-   padding: 0;
-}
-
-/* user's primary verifications - table design */
-table.userverifications {
-   margin-left:1px;
-   padding: 0;
 }
 
 /* publications table design */
@@ -350,34 +278,33 @@ table.publications td {
 
 /* author directory table design */
 table.authordirectory {
-   background-color: #ffffaa;
+   background-color: #ffa;
    width: 100%;
    padding: 0px;
    text-align: center;
-   border-top: 1px solid grey;
-   border-left: 1px solid grey;
+   border-top: 1px solid gray;
+   border-left: 1px solid gray;
    border-bottom: 1px solid black;
    border-right: 1px solid black;
 }
 
 /* author directory table design */
 table.authordirectory td {
-   border-top: 1px solid grey;
-   border-left: 1px solid grey;
+   border-top: 1px solid gray;
+   border-left: 1px solid gray;
    border-bottom: 1px solid black;
    border-right: 1px solid black;
 }
 
 /* author directory cell - no link */
 td.authordirectorynolink {
-   background-color: #aaaaaa;
+   background-color: #aaa;
 }
-
 
 /* moderator review tables design */
 table.review {
-   border-top: 1px solid grey;
-   border-left: 1px solid grey;
+   border-top: 1px solid gray;
+   border-left: 1px solid gray;
    border-bottom: 1px solid black;
    border-right: 1px solid black;
 }
@@ -386,8 +313,8 @@ table.review {
 table.review td {
    border-top: 1px solid black;
    border-left: 1px solid black;
-   border-bottom: 1px solid grey;
-   border-right: 1px solid grey;
+   border-bottom: 1px solid gray;
+   border-right: 1px solid gray;
    padding: 2px;
 }
 
@@ -397,51 +324,12 @@ td.label {
    font-size: 100%; 
 }
 
-/* new moderator review tables label design */
-td.boldlabel, th.boldlabel {
-   background: #B3B3B3;
-   font-size: 100%;
-   font-weight: bold;
-}
-
 th.dividerrow {
    background: #004;
    color: #fff;
    margin-top: 10px;
    padding: 5px;
    font-weight:bold;
-}
-
-div#main2 {
-   color: #000; 
-   background: #C7DBFF;
-   border: 1px solid black;
-   /*margin-left: 180px; 
-   */
-   margin-left: 200px; 
-   margin-right: 10px; 
-   margin-bottom: 15px;
-   padding-top: 10px;
-   padding-left: 10px;
-   padding-right: 10px;
-   padding-bottom: 10px;
-}
-
-div#Headline {
-	font-family:Arial,Helvetica,sans-serif;
-	font-weight:bold;
-	font-size: 125%; 
-	padding-top: 25px;
-}
-
-div#Intro {
-	border: 1px solid black;
-	/*background: #C7DBFF;
-	*/
-        background: #ccc; 
-	font-family:Arial,Helvetica,sans-serif;
-	font-size: 125%; 
-	padding: 5px;
 }
 
 div#content {
@@ -475,74 +363,14 @@ div.ContentBoxEdit {
 	padding-left: 20px;
 	padding-right: 5px;
 }
-
-div.VerificationBox {
-	background: #fff; 
-	border: 1px solid black;
-	padding-left: 25px;
-	padding-bottom: 15px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
-div#HelpBox {
-	background: #8f8; 
-	border: 1px solid black;
-	padding-top: 15px;
-	padding-left: 25px;
-	padding-bottom: 5px;
-	margin-top: 10px;
-	margin-bottom: 25px;
-}
-div#WarningBox, div#RecentSubmissionWarning, div#PendingSubmissionWarning, div#DateMismatchWarning, div#PendingTitleRemovalWarning, div#PendingImportWarning, div#PendingVTs, div#PendingTitleMergesWarning, div#PendingTitleEditsWarning, div#PendingTitleEditsInPubEditsWarning {
-	background: yellow; 
-	border: 1px solid black;
-	padding-top: 15px;
-	padding-left: 25px;
-	padding-bottom: 5px;
-	margin-top: 10px;
-	margin-bottom: 25px;
-}
-div#ErrorBox {
-	background: red; 
-	border: 1px solid black;
-	padding-top: 15px;
-	padding-left: 25px;
-	padding-bottom: 5px;
-	margin-top: 10px;
-	margin-bottom: 25px;
-}
-a.approval {
-	font-weight:bold;
-	border: 1px solid black;
-	padding: 5px;
-	background: #4f4; 
-}
 a.hold {
 	font-weight:bold;
 	border: 1px solid black;
 	padding: 5px;
 	background: yellow; 
 }
-input#rejection {
-	font-weight:bold;
-	border: 1px solid black;
-	padding: 5px;
-	background: #f88; 
-}
 
 ul.navbar {
-   margin-left: 15px;
-   padding: 0;
-}
-
-div.divothersites {
-   display: none;
-   background: #ccc;
-   color: #000; 
-   font-weight: normal;
-}
-
-ul.listothersites {
    margin-left: 15px;
    padding: 0;
 }
@@ -551,16 +379,6 @@ div.divider:hover div.divothersites,
 div.divider:focus div.divothersites,
 div.divider:active div.divothersites {
     display: block;
-}
-
-i.downarrow {
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    color: white;
-    padding: 3px;
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
 }
 
 ul.noindent {
@@ -607,37 +425,9 @@ td.variants {
    border-collapse: collapse;
 }
 
-table.variantscolumn {
-   vertical-align: top;
-   margin: 0px;
-   padding: 0px;
-   border-spacing: 1px 0px;
-}
-
 td.authorbiblios {
    border:1px solid black;
    background-color: #e4e4e4;
-}
-
-table.pub_metadata {
-   border: none
-}
-
-table.checkboxheaders {
-   border-spacing: 1px;
-   border-collapse: separate;
-}
-
-td.checkboxseparator {
-   padding: 5px;
-}
-
-td.hint {
-   cursor:help;
-}
-
-span.hint {
-   cursor:help;
 }
 
 img.help {
@@ -650,46 +440,9 @@ a img {
    text-decoration: none;
 }
 
-/* moderator, layoutof sign to display between multiple elements (authors) */
-span.mergesign {
-   font-weight: bold;
-   color: #3333ff;
-   margin-left: 2px;
-   margin-right: 2px;
-}
-
 /* for notes, preserve carriage returns */
 div.notes {
    white-space: pre-wrap;
-}
-
-/* generic style, get some free room to previous elements */
-.topspace {
-   margin-top:10px;
-}
-
-/* moderator, submission by current user */
-td.submissionown {
-   background-color: #3333ff;
-}
-
-td.submissionown a {
-   color: #ffffff;
-}
-
-/* moderator, submission by a moderator */
-td.submissionmoderator {
-   background-color: #FFFF00;
-}
-
-/* moderator, submission by a newbie */
-td.submissionnewbie {
-   background-color: #00FF33;
-}
-
-/* moderator, submission by a self-approver */
-td.submissionselfapprover {
-   background-color: #00FFFF;
 }
 
 /* seriesgrid.cgi table, primary verified entries */
@@ -712,19 +465,19 @@ table.seriesgrid td.notverified {
 
 /* seriesgrid.cgi table, table design */
 table.seriesgrid {
-   border-top: 1px solid grey;
-   border-left: 1px solid grey;
+   border-top: 1px solid gray;
+   border-left: 1px solid gray;
    border-bottom: 1px solid black;
    border-right: 1px solid black;
-   background-color: #FFFFFF;
+   background-color: white;
 }
 
 /* seriesgrid.cgi table, table cell design */
 table.seriesgrid td {
    border-top: 1px solid black;
    border-left: 1px solid black;
-   border-bottom: 1px solid grey;
-   border-right: 1px solid grey;
+   border-bottom: 1px solid gray;
+   border-right: 1px solid gray;
    padding: 2px;
 }
 
@@ -732,8 +485,8 @@ table.seriesgrid td {
 table.seriesgrid th {
    border-top: 1px solid black;
    border-left: 1px solid black;
-   border-bottom: 1px solid grey;
-   border-right: 1px solid grey;
+   border-bottom: 1px solid gray;
+   border-right: 1px solid gray;
    text-align: center;
    font-weight: bold;
    padding: 2px;
@@ -760,8 +513,8 @@ tr.seriesgridinner {
 
 /* seriesgrid.cgi inner tables, table-cell design of inner table */
 table.seriesgridinner td {
-   /*border: 1px solid grey;
-   border-left: 1px solid grey;
+   /*border: 1px solid gray;
+   border-left: 1px solid gray;
    border-bottom: 1px solid black;
    border-right: 1px solid black;*/
    padding: 1px;
@@ -770,38 +523,31 @@ table.seriesgridinner td {
 
 /* bibliolinks table, table design */
 table.bibliolinks {
-   /*border-top: 1px solid grey;
-   border-left: 1px solid grey;
+   /*border-top: 1px solid gray;
+   border-left: 1px solid gray;
    border-bottom: 1px solid black;
    border-right: 1px solid black;
-   background-color: #FFFFFF;*/
+   background-color: white;*/
    margin-left: -3px;
    padding: 0px;
 }
 
 /* generic centered table, table design */
 table.generic_centered_table {
-   background-color: #FFFFFF;
+   background-color: white;
    padding: 0px;
-   margin-right: auto;
-   margin-left: auto;
-}
-
-/* table row design of generic centered table */
-tr.generic_centered_header {
-   background-color: #d6d6d6;
    margin-right: auto;
    margin-left: auto;
 }
 
 /* generic table, table design */
 table.generic_table {
-   background-color: #FFFFFF;
+   background-color: white;
    padding: 0px;
 }
 
 table.collection_table {
-   background-color: #FFFFFF;
+   background-color: white;
    padding: 0px;
 }
 
@@ -816,161 +562,9 @@ tr.generic_table_header {
    text-align: left;
 }
 
-/* generic cell with a black background */
-td.generic_black_cell {
-   background-color: black;
-}
-
-/* votes table, table design */
-table.vote_table {
-   background-color: #FFFFFF;
-   padding: 3px;
-}
-
-/* votes table, cell design */
-table.vote_table td, table.vote_table th {
-   padding: 3px;
-}
-
-/* publication comparison table, table design */
-table.pub_comparison_table {
-   padding: 3px;
-}
-
-/* publication comparison table, cell design */
-table.pub_comparison_table td,
-table.pub_comparison_table th {
-   padding: 3px;
-   border-top: 1px solid black;
-   border-left: 1px solid black;
-   border-bottom: 1px solid grey;
-   border-right: 1px solid grey;
-   background: #d0ffd0;
-   font-size: 100%; 
-}
-
-/* publication comparison title not found, cell design */
-table.pub_comparison_table td.pub_comparison_title_not_found,
-table.pub_comparison_table th.pub_comparison_title_not_found {
-   padding: 3px;
-   background: #ffc0c0;
-   font-size: 100%; 
-}
-
-/* edit dialogs headlines */
-.editheadline {
-   margin-top:10px;
-}
-
 /* table to display/edit publication metadata */
 table#metadata {
    border: 0px;
-}
-
-/* input element of table to display/edit publication metadata */
-.metainput {
-   width: 600px;
-}
-
-input.metainput {
-   /* border: 2px lightgrey inset;
-   border-radius: 4px; */
-}
-textarea.metainput {
-   /* border: 2px lightgrey inset;
-   border-radius: 4px; */
-}
-
-/* input element of table to display/edit content field of publication */
-.contentinput {
-   width: 335px;
-   /* border: 2px lightgrey inset;
-   border-radius: 4px; */
-}
-
-/* input element of table to display/edit content page field of publication */
-/* width: 110px; */
-.contentpageinput {
-   width: 50px;
-   /* border: 2px lightgrey inset;
-   border-radius: 4px; */
-}
-
-/* input element of table to display/edit content year field of publication */
-.contentyearinput {
-   width: 75px;
-   /* border: 2px lightgrey inset;
-   border-radius: 4px; */
-}
-
-/* input element of table to display/edit content type field of publication */
-.contenttypeinput {
-   width: 120px;
-}
-input.contenttypeinput {
-   /* border: 2px lightgrey inset;
-   border-radius: 4px; */
-}
-
-/* input element of table to display/edit content len field of publication */
-.contentleninput {
-   width: 100px;
-}
-
-input.contentleninput {
-   /* border: 2px lightgrey inset;
-   border-radius: 4px; */
-}
-
-/* the outer table for the title edit dialogs */
-table.titleedit {
-   border: 0px;
-}
-
-/* display of container titles, yellow input fields */
-input.titlecontainer, select.titlecontainer {
-   background-color: yellow;
-   border-left: 2px #72716f solid;
-   border-top: 2px #72716f solid;
-   border-right: 2px white solid;
-   border-bottom: 2px white solid;
-   border-radius: 0px;
-}
-
-/* black spacer line in title edit dialog */
-tr.titleeditspacer {
-   /* add some space on top and below? */
-}
-
-/* cell of black spacer line in title edit dialog */
-tr.titleeditspacer td {
-   background-color: black;
-}
-
-/* the outer table for the review edit dialogs */
-table.reviewedit {
-   border: 0px;
-}
-
-/* the outer table for the interview edit dialogs */
-table.interviewedit {
-   border: 0px;
-}
-
-/* title display of multipe used titles, grey readonly input fields */
-.titlemultiple {
-   background-color: #E4E4E4;
-   /* background-color: #D4D4D4; */
-}
-
-/* display of readonly input fields */
-.displayonly {
-   background-color: #E4E4E4;
-}
-
-/* request to create an account */
-span.newuser {
-   color: #FFD700;
 }
 
 /* indent a single paragraph */
@@ -978,23 +572,12 @@ p.textindent {
    text-indent:40px;
 }
 
-/* high priority moderator notes warning */
-p.highprioritymodnotes {
-   color:red;
-}
-
-
 /* horizontal divider */
 hr.divider {
    height:4px;
    border-width:0;
    color:black;
    background-color:black;
-}
-
-/* type of title entry for title page edit */
-input.titletype {
-   width: 120px;
 }
 
 /* authors table on main page */
@@ -1030,59 +613,9 @@ span.containertitle {
    font-weight: bold;
 }
 
-/* publication display listing type switch */
-a.listingtext {
-   font-size: 65%;
-}
-
-/* moderator review span warning */
-span.warn {
-   background: yellow;
-}
-
 /* scan images displayed on other pages */
 img.scans {
    height: 200px;
-}
-
-/* scan images displayed on submission pages */
-img.tallscan {
-   height: 250px;
-}
-
-/* checkmark display for verification status */
-td.checkmark {
-   text-align: center;
-}
-
-/* checkbox display for title flags */
-td.titleflags {
-   text-align: center;
-}
-
-/* a cover image exists */
-.coverexists {
-   font-size: 90%; 
-   background: Moccasin;
-   color: Blue;
-   text-decoration: none;
-   padding-left: 5px;
-   padding-right: 5px;
-}
-
-/* a cover image exists at ISFDB */
-.coverisfdb {
-   font-size: 90%; 
-   background: Lightgreen;
-   color: Blue;
-   text-decoration: none;
-   padding-left: 5px;
-   padding-right: 5px;
-}
-
-/* small cover display in link previews */
-img.coversmall {
-   width: 90px;
 }
 
 /* cover display on the front page */
@@ -1093,15 +626,6 @@ img.covermainpage {
 /* links to detailed forcoming books on the main page */
 p.bottomlinks {
    margin-bottom: 0px;
-}
-
-/* link to Search Help in the Search box */
-p.searchhelp {
-   margin-bottom: 0px;
-   margin-top: 1px;
-   font-weight: normal;
-   padding-top: 1px;
-   padding-bottom: 1px;
 }
 
 /* publication link on main page for forthcoming books */
@@ -1115,14 +639,6 @@ input.search {
   width: 125px;
 }
 
-/* button to add another input line in an edit form */
-input.addbutton {
-  font-size: 80%;
-  height: 2em;
-  width: 2em;
-  padding: 1px 1px;
-}
-
 /* search block in navigation bar - search type field */
 select.search {
   width: 130px;
@@ -1133,27 +649,7 @@ sup.mouseover {
   font-size: 60%;
 }
 
-/* Mouseover question mark 2 pixels to the right of the text */
-sup.mouseover2pix {
-  font-size: 60%;
-  padding-left: 2px;
-}
-
-/* Do not display hidden selects */
-select.nodisplay {
-  display:none;
-}
-
-/* Do not display hidden inputs */
-input.nodisplay {
-  display:none;
-}
-
 span.recordID {
-  float:right;
-}
-
-span.approval {
   float:right;
 }
 
@@ -1162,105 +658,13 @@ span.approval {
   stroke-width:1;
 }
 
-.svgred {
-  stroke:red;
-  stroke-width:2;
-}
-
-.svgblue {
-  stroke:blue;
-  stroke-width:2;
-}
-
-.svgorange {
-  stroke:orange;
-  stroke-width:2;
-}
-
-.svgyellow {
-  stroke:yellow;
-  stroke-width:2;
-}
-
-.svgpink {
-  stroke:pink;
-  stroke-width:2;
-}
-
-.svggreen {
-  stroke:green;
-  stroke-width:2;
-}
-
-.svgblack {
-  stroke:black;
-  stroke-width:2;
-}
-
 td.authorimage {
   width: 100%;
   vertical-align: top;
 }
 
-td.submissionbreakdowns {
-  vertical-align: top;
-}
-
 div.nongenre {
   text-align: center;
-}
-
-/* Tooltip container divs */
-div.tooltip {
-    position: relative;
-    display: inline;
-}
-
-div.tooltipleft {
-    position: relative;
-    display: inline;
-}
-
-/* Tooltip text */
-div.tooltip span.tooltiptext {
-    /* Position the tooltip text */
-    position: absolute;
-    pointer-events: none;
-    background: transparent;
-    visibility: hidden;
-    background-color: white;
-    color: black;
-    text-align: left;
-    padding: 5px 0;
-    padding-left: 3px;
-    border-radius: 6px;
-    border: 1px solid black;
-    z-index: 1;
-}
-
-div.tooltipleft span.tooltipleft {
-    right: 105%;
-}
-
-div.tooltipright span.tooltipright {
-    left: 105%;
-}
-
-span.tooltipnarrow {
-    width: 150px;
-}
-
-span.tooltipwide {
-    width: 300px;
-}
-
-/* Show the tooltip text when you mouse over the tooltip container */
-div.tooltip:hover span.tooltiptext {
-    visibility: visible;
-}
-
-div.tooltipleft:hover span.tooltiptextleft {
-    visibility: visible;
 }
 
 .button-container form,
@@ -1275,19 +679,19 @@ div.tooltipleft:hover span.tooltiptextleft {
 
 /* numeric_external_id_ranges.cgi table, table design */
 table.externalidranges {
-   border-top: 1px solid grey;
-   border-left: 1px solid grey;
+   border-top: 1px solid gray;
+   border-left: 1px solid gray;
    border-bottom: 1px solid black;
    border-right: 1px solid black;
-   background-color: #FFFFFF;
+   background-color: white;
 }
 
 /* numeric_external_id_ranges.cgi table, table cell design */
 table.externalidranges td {
    border-top: 1px solid black;
    border-left: 1px solid black;
-   border-bottom: 1px solid grey;
-   border-right: 1px solid grey;
+   border-bottom: 1px solid gray;
+   border-right: 1px solid gray;
    padding: 2px;
 }
 
@@ -1305,8 +709,8 @@ table.calendar_row {
    width: 100%;
    border-top: 1px solid black;
    border-left: 1px solid black;
-   border-bottom: 1px solid grey;
-   border-right: 1px solid grey;
+   border-bottom: 1px solid gray;
+   border-right: 1px solid gray;
 }
 
 th.calendar {
@@ -1325,13 +729,13 @@ a.button {
    display: inline-block;
    border-radius: 4px;
    text-decoration: none;
-   background-color: #EEEEEE;
-   color: #333333;
+   background-color: #EEE;
+   color: #333;
    padding: 2px 6px 2px 6px;
-   border-top: 1px solid #333333;
-   border-right: 1px solid #333333;
-   border-bottom: 1px solid #333333;
-   border-left: 1px solid #333333;
+   border-top: 1px solid #333;
+   border-right: 1px solid #333;
+   border-bottom: 1px solid #333;
+   border-left: 1px solid #333;
    margin: 1px 1px 1px 1px;
 }
 
@@ -1427,28 +831,5 @@ a.button {
 
 #homepage_birthdays table {
    margin: 0 auto;
-}
-
-.birthday_cards {
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: center;
-   gap: 1.2em;
-   margin-bottom: 0.8em;
-}
-
-.birthday_card {
-   width: 130px;
-   text-align: center;
-}
-
-.birthday_card a {
-   text-decoration: none;
-   color: inherit;
-   display: block;
-}
-
-.birthday_card a:hover .birthday_name {
-   text-decoration: underline;
 }
 
