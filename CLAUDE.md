@@ -1,21 +1,26 @@
-# ISFDB-Go — Project Background & Development Guide
+# DSFDB — Desktop SF Database: Project Background & Development Guide
 
 ## What This Is
 
-A desktop, read-only port of the [Internet Speculative Fiction Database (ISFDB)](https://www.isfdb.org) from Python 2/3 + MySQL to Go + SQLite. The goal is a self-contained binary that anyone can run locally — no separate database server, no web server installation. Point a browser at `localhost:8080` and browse the full ISFDB.
+A desktop, read-only port of the [Internet Speculative Fiction Database (ISFDB)](https://www.isfdb.org) from Python 2/3 + MySQL to Go + SQLite, rebranded as **DSFDB** to visually distinguish it from the live site. The goal is a self-contained binary that anyone can run locally — no separate database server, no web server installation. Point a browser at `localhost:8080` (server mode) or launch the `app` binary for a self-contained webview window.
 
 **Motivation:** Waves of AI crawler attacks beginning in early 2026 made the live ISFDB site unusable. The site runs on a single server (database, web server, wiki, edit/moderation tools all co-located), so any attack brings down everything. An installable desktop version provides resilience. The Go rewrite also escapes the painful Python ecosystem installation process and achieves dramatically better performance than the Python/MySQL original.
 
 ## Architecture
 
 - **Language:** Go (`net/http` standard library, no framework)
-- **Database:** SQLite via `github.com/mattn/go-sqlite3`
-- **Entry point:** `cmd/server/main.go` — registers all HTTP handlers and starts on `:8080`
+- **Databases:** Two SQLite files:
+  - `isfdb.db` — read-only ISFDB bibliographic data (downloaded on first run)
+  - `user_data.db` — user's personal collection (`collection` table)
+- **Entry points:**
+  - `cmd/server/main.go` — headless HTTP server on `:8080`; use with any browser
+  - `cmd/app/main.go` — self-contained desktop app via `github.com/webview/webview_go` (WKWebView on macOS, webkit2gtk on Linux); window title "DSFDB"
 - **Library package:** `isfdb/` — all handlers, SQL helpers, and rendering functions
 - **Static assets:** `static/` — CSS, images served via `http.FileServer`
-- **Database file:** `isfdb.db` (SQLite, placed in project root at runtime)
+- **Live mux swap:** `routes.go` exports `SwappableHandler{}` (wraps an `atomic.Value`) so the HTTP handler can be replaced after first-run DB install without restarting
+- **Build:** `make server` / `make app` / `make all` (see `Makefile` for platform-specific CGO flags)
 
-The server is read-only with respect to bibliographic data — `isfdb.db` is never written to. POST handlers exist (or will exist) only for stateless operations like search and user preferences (stored in cookies, not the database). There is no authentication.
+`isfdb.db` is never written to. The collection and any future user preferences live in `user_data.db`.
 
 ## Source Reference
 
@@ -61,6 +66,7 @@ Example:
 | `templates.go` | `Templates` map — MediaWiki template substitutions used in `FormatNote` |
 | `urls.go` | URL/domain SQL for recognized external domains |
 | `update.go` | Database update logic: `CheckForUpdate`, `StartUpdate`, `importSQL` (string-aware SQL scanner), atomic DB swap; `UpdateState` with mutex |
+| `routes.go` | `SwappableHandler`, `ActiveHandler` (`atomic.Value`), `newAppMux()`, `ActivateAppRoutes()`, `RegisterRoutes()` |
 
 ### Rendering / Utility Layer
 
@@ -117,6 +123,7 @@ Example:
 | `handler_most_popular.go` | `/most_popular_table.cgi?TYPE` (decade+year grid), `/most_popular.cgi?TYPE+SPAN[+YEAR_OR_DECADE]` (titles ranked by award score; 4 spans: all/pre1950/decade/year) |
 | `handler_most_reviewed.go` | `/most_reviewed_table.cgi` (decade+year grid from 1900), `/most_reviewed.cgi?SPAN[+YEAR_OR_DECADE]` (titles ranked by review count from `most_reviewed` table) |
 | `handler_stats_report.go` | `/stats.cgi?N` — routes to per-report functions for reports 5, 7, 8, 16, 17, 18, 19; SVG line charts for 5/7/8, HTML tables for 16-19; generated on demand (no `reports` table in desktop DB) |
+| `handler_collection.go` | `/collection_new.cgi`, `/collection_submitnew.cgi`, `/collection_list.cgi`, `/collection_view.cgi`, `/collection_edit.cgi`, `/collection_submitedit.cgi`, `/collection_search.cgi`, `/collection_slist.cgi` — personal book collection against `user_data.db` |
 
 ## Page Layout Conventions
 
@@ -160,6 +167,8 @@ Award levels: 1–9 = win tiers, 10–89 = nomination tiers, 90–98 = special (
 | 6/16/26 | adv_search_menu.cgi; adv_search_selection.cgi; adv_search_results.cgi |
 | 6/20/26 | Copyright headers added to all Go files; README Installation section rewritten; initial GitHub push to https://github.com/alvonruff/isfdb-go; feature branch PR workflow established |
 | 6/25/26 | stats-and-tops.cgi; authors_by_debut_year_table/year.cgi; popular_authors_table/popular_authors.cgi; most_popular_table/most_popular.cgi; most_reviewed_table/most_reviewed.cgi; stats.cgi (reports 5,7,8,16-19 with SVG charts); Linux confirmed working |
+| 7/16/26 | Personal book collection (collection_new/list/view/edit/search/slist); user_data.db; cross-DB search (collection pub_ids → isfdb.db filter); webview desktop app (`cmd/app`); find-in-page bar; external link interception; macOS Cmd+C/V/A/X fix; no-restart DB update via SwappableHandler; Back button in navbar; Linux Makefile fixes (xcrun guard, webkit2gtk-4.1 shim) |
+| 7/19/26 | CSS cleanup: removed 97 unused rules; CSS custom properties (`:root` variable block, 20 variables); color normalization (hex→named where exact match); DSFDB rebrand: new banner/logo artwork, blue-teal color scheme (`--bg-page`, `--bg-nav`) |
 
 ## Git Workflow
 
@@ -175,20 +184,32 @@ git checkout main && git pull           # sync main
 
 ## What's Next
 
-All read-only CGI pages are complete — no more dangling links in the desktop app. Planned next work:
+All read-only CGI pages and the personal book collection are complete. Planned next work:
 
-- **User data database** (`user_data.db`) — a second SQLite file for per-user state (schema design in progress)
-- **Book collection / reading list** — track personal reading against ISFDB records
-- **User preferences** — theme, display options stored in the user DB
+- **Dark mode** — CSS custom properties are in place; just needs a `@media (prefers-color-scheme: dark)` override block with revised variable values
+- **User preferences** — theme selection and other display options stored in `user_data.db`
+- **Windows support** — would require switching from `go-sqlite3` (CGO) to `modernc.org/sqlite` (pure Go) for CGO-free builds under WSL
 
 ## Development Approach
 
 Work is done in small, focused chunks (50–150 LOC at a time) with visual browser verification after each step. Claude Code cannot see rendered output, so the human provides visual feedback by comparing against the live site at `www.isfdb.org`. The Python source at `/Users/alvonruff/OFFICIAL/p3/` is the authoritative reference for behavior.
 
-## Running the Server
+## Running the App
 
 ```bash
 cd /Users/alvonruff/isfdb-go
-./RUN.sh          # or: go run ./cmd/server
-# then open http://localhost:8080/title.cgi?12345
+
+# Headless server (use with any browser)
+make server
+./server
+# open http://localhost:8080
+
+# Self-contained desktop window (macOS / Linux)
+make app
+./app
+
+# Or both at once
+make all
 ```
+
+On first run with no `isfdb.db`, the app auto-downloads and installs the database, then swaps the mux live — no restart needed.
