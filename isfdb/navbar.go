@@ -108,7 +108,7 @@ func printNavSearchBox(w io.Writer, pageType, searchValue, searchType string) {
 		fmt.Fprintf(w, "<img src=\"%s://%s/isfdb_logo.jpg\" width=\"129\" height=\"85\" alt=\"ISFDB logo\">\n",
 			PROTOCOL, HTMLHOST)
 	} else {
-		fmt.Fprintf(w, "<img src=\"%s://%s/isfdb.gif\" width=\"130\" height=\"77\" alt=\"ISFDB logo\">\n",
+		fmt.Fprintf(w, "<img src=\"%s://%s/isfdb.jpg\" width=\"130\" height=\"77\" alt=\"ISFDB logo\">\n",
 			PROTOCOL, HTMLHOST)
 	}
 	fmt.Fprintln(w, `</a>`)

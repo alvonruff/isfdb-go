@@ -57,7 +57,7 @@ func main() {
 func openWindow(url string) {
 	w := webview.New(true)
 	defer w.Destroy()
-	w.SetTitle("ISFDB")
+	w.SetTitle("DSFDB")
 	w.SetSize(1400, 900, webview.HintNone)
 
 	// Bind a Go function that the JS intercept calls for external links.

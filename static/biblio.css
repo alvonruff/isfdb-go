@@ -1,4 +1,4 @@
-/* (C) COPYRIGHT 2008-2025   Al von Ruff, Ahasuerus and Dirk Stoecker
+/* (C) COPYRIGHT 2008-2026   Al von Ruff, Ahasuerus and Dirk Stoecker
          ALL RIGHTS RESERVED
 
      The copyright notice above does not evidence any actual or
@@ -10,9 +10,9 @@
 
 :root {
    /* Page structure */
-   --bg-page:           #eec;
+   --bg-page:           #c2eaf0; /* Was #eec */
    --bg-content:        white;
-   --bg-nav:            #ccc;
+   --bg-nav:            #b4ced2; /* Was #ccc */
    --bg-statusbar:      black;
    --border-color:      black;
 
@@ -45,8 +45,6 @@ html,body {
    font-size: 90%; 
    font-family: Arial, Helvetica, sans-serif;
    color: var(--text-primary); 
-   /*background: var(--bg-content)5C7; 
-   */
    background: var(--bg-page); 
    margin: 0; 
    padding: 0; 
@@ -130,8 +128,6 @@ div#nav {
    width: 150px; 
    border: 1px solid var(--border-color);
    color: var(--text-primary); 
-   /*background: #D9D0A9; 
-   */
    background: var(--bg-nav); 
    margin-left: 10px;
    margin-bottom: 15px;
@@ -311,7 +307,7 @@ table.publications td {
 
 /* author directory table design */
 table.authordirectory {
-   background-color: #ffa;
+   background-color: #DCF6F7; /* Was: #ffa */
    width: 100%;
    padding: 0px;
    text-align: center;
@@ -366,7 +362,7 @@ th.dividerrow {
 }
 
 div#content {
-   background: #D9D0A9; 
+   background: #97ADB2; /* Was: #D9D0A9 */
    border: 1px solid var(--border-color);
    margin-left: 200px; 
    margin-right: 10px; 
@@ -728,17 +724,7 @@ table.externalidranges td {
    padding: 2px;
 }
 
-/* table.calendar_table { */
-/*    border-collapse: collapse; */
-/* } */
-/* */ 
-/* table.calendar_table td { */
-/*    vertical-align: top; */
-/*    padding: 4px; */
-/* } */
-
 table.calendar_row {
-   /* width: 220px; */
    width: 100%;
    border-top: 1px solid var(--border-color);
    border-left: 1px solid var(--border-color);
