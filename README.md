@@ -82,11 +82,7 @@ difficult with humans, but easy with an AI.
 
 # Attribution
 
-There are currently three files from the ISFDB used here:
-
-* static/biblio.css
-* static/isfdb.gif
-* static/isfdb_logo.jpg
+The only file reused from the ISFDB source is biblio.css. This has been heavily pruned, refactored to use color variables, and has a new color theme to differentiate it from the online website.
 
 # License
 
