@@ -12,7 +12,7 @@
    /* Page structure */
    --bg-page:           #c2eaf0; /* Was #eec */
    --bg-content:        white;
-   --bg-nav:            #b4ced2; /* Was #ccc */
+   --bg-nav:            #97ADB2; /* Was #ccc */
    --bg-statusbar:      black;
    --border-color:      black;
 
@@ -99,7 +99,7 @@ abbr.template a:hover, a:active {
 
 a.topbanner {
    display: block;
-   height: 90px;
+   height: 180px;
    color: var(--text-on-dark); 
    background: var(--bg-divider);
    background-repeat: no-repeat;
