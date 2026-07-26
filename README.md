@@ -13,7 +13,9 @@ The desktop has been veried to run on MacOS, Linux, and Windows (only under WSL)
 - On MacOS:
 ```
    xcode-select --install
-   Visit: https://go.dev/dl/ download the MacOS Installer package, and install)
+   <Visit>: https://go.dev/dl/
+   <Download>: MacOS Installer package
+   <Install Package>
 ```
 - On Linux (and Windows WSL):
 ```
@@ -21,6 +23,11 @@ The desktop has been veried to run on MacOS, Linux, and Windows (only under WSL)
    sudo apt install libwebkit2gtk-4.1-0
    sudo apt install libwebkit2gtk-4.1-dev
    sudo apt install golang-go
+```
+- Windows WSL Only (to pick up additional unicode fonts):
+```
+   same as Linux above, plus:
+   sudo apt-get install fonts-noto
 ```
 
 ## Steps
