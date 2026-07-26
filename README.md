@@ -15,7 +15,7 @@ The desktop has been veried to run on MacOS, Linux, and Windows (only under WSL)
    xcode-select --install
    Visit: https://go.dev/dl/ download the MacOS Installer package, and install)
 ```
-- On Linux:
+- On Linux (and Windows WSL):
 ```
    sudo apt install libgtk-3-dev pkg-config
    sudo apt install libwebkit2gtk-4.1-0
