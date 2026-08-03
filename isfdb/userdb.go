@@ -35,6 +35,19 @@ var userDBSchema = []string{
 		col_note      TEXT    NOT NULL DEFAULT ''
 	)`,
 	`CREATE INDEX IF NOT EXISTS collection_pub_id ON collection (pub_id)`,
+	`CREATE TABLE IF NOT EXISTS user_preferences (
+		user_pref_id              INTEGER PRIMARY KEY AUTOINCREMENT,
+		concise_disp              INTEGER DEFAULT 0,
+		display_all_languages     TEXT    DEFAULT 'All' CHECK(display_all_languages IN ('All','None','Selected')),
+		default_language          INTEGER DEFAULT 0,
+		covers_display            INTEGER DEFAULT 1,
+		cover_links_display       INTEGER DEFAULT 1,
+		keep_spaces_in_searches   INTEGER DEFAULT 0,
+		suppress_awards           INTEGER DEFAULT 0,
+		suppress_reviews          INTEGER DEFAULT 0,
+		display_title_translations INTEGER DEFAULT 1,
+		dark_mode                 INTEGER DEFAULT 2
+	)`,
 }
 
 // UserDBOpen opens the user data database, creating the file and schema if
@@ -55,6 +68,48 @@ func UserDBOpen() error {
 
 	UserDB = db
 	return nil
+}
+
+// UserPrefs holds the single row from the user_preferences table.
+// dark_mode: 0=light, 1=dark, 2=system/auto.
+type UserPrefs struct {
+	ConciseDisp              int
+	DisplayAllLanguages      string
+	DefaultLanguage          int
+	CoversDisplay            bool
+	CoverLinksDisplay        bool
+	KeepSpacesInSearches     bool
+	SuppressAwards           bool
+	SuppressReviews          bool
+	DisplayTitleTranslations bool
+	DarkMode                 int
+}
+
+// LoadUserPrefs returns the user's preferences, creating the default row if
+// none exists yet.
+func LoadUserPrefs() (UserPrefs, error) {
+	var p UserPrefs
+	err := UserDB.QueryRow(`
+		SELECT concise_disp, display_all_languages, default_language,
+		       covers_display, cover_links_display, keep_spaces_in_searches,
+		       suppress_awards, suppress_reviews, display_title_translations,
+		       dark_mode
+		FROM user_preferences LIMIT 1`).Scan(
+		&p.ConciseDisp, &p.DisplayAllLanguages, &p.DefaultLanguage,
+		&p.CoversDisplay, &p.CoverLinksDisplay, &p.KeepSpacesInSearches,
+		&p.SuppressAwards, &p.SuppressReviews, &p.DisplayTitleTranslations,
+		&p.DarkMode,
+	)
+	if err == sql.ErrNoRows {
+		if _, err = UserDB.Exec(`INSERT INTO user_preferences DEFAULT VALUES`); err != nil {
+			return p, fmt.Errorf("user_preferences insert default: %w", err)
+		}
+		return LoadUserPrefs()
+	}
+	if err != nil {
+		return p, fmt.Errorf("user_preferences load: %w", err)
+	}
+	return p, nil
 }
 
 // UserDBClose closes the user data database.
