@@ -12,7 +12,7 @@
    /* Page structure */
    --bg-page:           #c2eaf0; /* Was #eec */
    --bg-content:        white;
-   --bg-nav:            #97ADB2; /* Was #ccc */
+   --bg-nav:            #ADCBD1; /* Was #ccc */
    --bg-statusbar:      black;
    --border-color:      black;
 
@@ -852,3 +852,77 @@ a.button {
    margin: 0 auto;
 }
 
+
+/* ── Dark mode ─────────────────────────────────────────────────────────────
+   Two mechanisms:
+     1. @media (prefers-color-scheme: dark)  — used when dark_mode = 2 (system)
+     2. [data-theme="dark"] on <html>        — used when dark_mode = 1 (forced dark)
+   A [data-theme="light"] selector forces light even on a dark-mode system.
+*/
+:root[data-theme="light"] {
+   --bg-page:           #c2eaf0;
+   --bg-content:        white;
+   --bg-nav:            #ADCBD1;
+   --bg-statusbar:      black;
+   --border-color:      black;
+   --bg-divider:        #004;
+   --text-on-dark:      white;
+   --bg-table2:         #eee;
+   --bg-table-header:   #B3B3B3;
+   --bg-edit:           #C7DBFF;
+   --bg-input:          #f5f5f5;
+   --bg-success:        #d0ffd0;
+   --bg-error:          #ffc0c0;
+   --bg-warning:        #FFF5C7;
+   --color-new-link:    #ba0000;
+   --text-primary:      black;
+   --text-secondary:    #333;
+   --text-muted:        #555;
+   --text-faint:        #888;
+}
+
+:root[data-theme="dark"] {
+   --bg-page:           #1a2a2e;
+   --bg-content:        #1e2a2e;
+   --bg-nav:            #243438;
+   --bg-statusbar:      #0d0d0d;
+   --border-color:      #4a5a5e;
+   --bg-divider:        #003050;
+   --text-on-dark:      #e8e8e8;
+   --bg-table2:         #243438;
+   --bg-table-header:   #2e3e42;
+   --bg-edit:           #1a2a4a;
+   --bg-input:          #243438;
+   --bg-success:        #1a3a1e;
+   --bg-error:          #3a1a1a;
+   --bg-warning:        #3a3010;
+   --color-new-link:    #ff8888;
+   --text-primary:      #dde6e8;
+   --text-secondary:    #b0bec0;
+   --text-muted:        #8a9ea0;
+   --text-faint:        #607478;
+}
+
+@media (prefers-color-scheme: dark) {
+   :root:not([data-theme="light"]) {
+      --bg-page:           #1a2a2e;
+      --bg-content:        #1e2a2e;
+      --bg-nav:            #243438;
+      --bg-statusbar:      #0d0d0d;
+      --border-color:      #4a5a5e;
+      --bg-divider:        #003050;
+      --text-on-dark:      #e8e8e8;
+      --bg-table2:         #243438;
+      --bg-table-header:   #2e3e42;
+      --bg-edit:           #1a2a4a;
+      --bg-input:          #243438;
+      --bg-success:        #1a3a1e;
+      --bg-error:          #3a1a1a;
+      --bg-warning:        #3a3010;
+      --color-new-link:    #ff8888;
+      --text-primary:      #dde6e8;
+      --text-secondary:    #b0bec0;
+      --text-muted:        #8a9ea0;
+      --text-faint:        #607478;
+   }
+}

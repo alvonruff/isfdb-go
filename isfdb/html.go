@@ -37,7 +37,21 @@ func ISFDBLinkNoName(cgi string, id int, label string) string {
 
 func HTMLheader(w io.Writer, title string) {
 	fmt.Fprintln(w, `<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">`)
-	fmt.Fprintln(w, `<html lang="en-us">`)
+
+	// Emit data-theme on <html> when the user has set an explicit preference.
+	// dark_mode: 0=light, 1=dark, 2=system (no attribute needed).
+	htmlTag := `<html lang="en-us">`
+	if UserDB != nil {
+		if p, err := LoadUserPrefs(); err == nil {
+			switch p.DarkMode {
+			case 0:
+				htmlTag = `<html lang="en-us" data-theme="light">`
+			case 1:
+				htmlTag = `<html lang="en-us" data-theme="dark">`
+			}
+		}
+	}
+	fmt.Fprintln(w, htmlTag)
 	fmt.Fprintln(w, `<head>`)
 	fmt.Fprintf(w, `<meta http-equiv="content-type" content="text/html; charset=%s" >`+"\n", UNICODE)
 	fmt.Fprintf(w, `<link rel="shortcut icon" href="%s://%s/favicon.ico">`+"\n", PROTOCOL, HTMLHOST)
