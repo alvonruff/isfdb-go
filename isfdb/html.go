@@ -13,10 +13,11 @@ import (
 )
 
 const (
-	UNICODE  = "utf-8"
-	PROTOCOL = "http"
-	HTMLHOST = "localhost:8080"
-	WIKILOC  = "localhost:8080"
+	UNICODE    = "utf-8"
+	PROTOCOL   = "http"
+	HTMLHOST   = "localhost:8080"
+	WIKILOC    = "localhost:8080"
+	CSS_VERSION = "2"
 )
 
 func ISFDBText(s string) string {
@@ -56,7 +57,7 @@ func HTMLheader(w io.Writer, title string) {
 	fmt.Fprintf(w, `<meta http-equiv="content-type" content="text/html; charset=%s" >`+"\n", UNICODE)
 	fmt.Fprintf(w, `<link rel="shortcut icon" href="%s://%s/favicon.ico">`+"\n", PROTOCOL, HTMLHOST)
 	fmt.Fprintf(w, "<title>%s</title>\n", ISFDBText(title))
-	fmt.Fprintf(w, `<link href="%s://%s/biblio.css" rel="stylesheet" type="text/css" media="screen">`+"\n", PROTOCOL, HTMLHOST)
+	fmt.Fprintf(w, `<link href="%s://%s/biblio.css?v=%s" rel="stylesheet" type="text/css" media="screen">`+"\n", PROTOCOL, HTMLHOST, CSS_VERSION)
 	fmt.Fprintln(w, `</head>`)
 	fmt.Fprintln(w, `<body>`)
 	fmt.Fprintln(w, `<div id="wrap">`)

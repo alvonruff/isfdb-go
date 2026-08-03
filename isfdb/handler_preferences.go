@@ -162,10 +162,14 @@ func SubmitPreferencesHandler(w http.ResponseWriter, r *http.Request) {
 		darkMode = v
 	}
 
-	// Ensure a row exists, then update it.
-	if _, err := UserDB.Exec(`INSERT OR IGNORE INTO user_preferences DEFAULT VALUES`); err != nil {
-		http.Error(w, "Failed to save preferences: "+err.Error(), http.StatusInternalServerError)
-		return
+	// Ensure exactly one row exists, then update it.
+	var count int
+	UserDB.QueryRow(`SELECT COUNT(*) FROM user_preferences`).Scan(&count)
+	if count == 0 {
+		if _, err := UserDB.Exec(`INSERT INTO user_preferences DEFAULT VALUES`); err != nil {
+			http.Error(w, "Failed to save preferences: "+err.Error(), http.StatusInternalServerError)
+			return
+		}
 	}
 	_, err := UserDB.Exec(`
 		UPDATE user_preferences SET
