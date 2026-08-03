@@ -82,7 +82,7 @@ func PrintNavbar(w io.Writer, pageType, searchValue, searchType string, ctx ...N
 // printNavCollection renders the My Collection navbar section.
 func printNavCollection(w io.Writer, ctx NavContext) {
 	fmt.Fprintln(w, `<div class="divider">`)
-	fmt.Fprintln(w, `My Collection:`)
+	fmt.Fprintln(w, `Book Collection:`)
 	fmt.Fprintln(w, `</div>`)
 	fmt.Fprintln(w, `<ul class="navbar">`)
 	if ctx.CollectionPubID > 0 {
@@ -157,6 +157,7 @@ func printNavOtherPages(w io.Writer, pageType string) {
 	fmt.Fprintf(w, "<li><a href=\"%s://%s/directory.cgi?magazine\">Magazine Directory</a>\n", PROTOCOL, HTMLHOST)
 	fmt.Fprintf(w, "<li><a href=\"%s://%s/stats-and-tops.cgi\">Statistics/Top Lists</a>\n", PROTOCOL, HTMLHOST)
 	fmt.Fprintf(w, "<li><a href=\"%s://%s/update.cgi\">Database Update</a>\n", PROTOCOL, HTMLHOST)
+	fmt.Fprintf(w, "<li><a href=\"%s://%s/mypreferences.cgi\">My Preferences</a>\n", PROTOCOL, HTMLHOST)
 
 	fmt.Fprintln(w, `</ul>`)
 }
@@ -164,7 +165,7 @@ func printNavOtherPages(w io.Writer, pageType string) {
 // printNavHistory renders the recent-page history section of the nav bar.
 func printNavHistory(w io.Writer) {
 	fmt.Fprintln(w, `<div class="divider">`)
-	fmt.Fprintln(w, `History:`)
+	fmt.Fprintln(w, `Navigation:`)
 	fmt.Fprintln(w, `</div>`)
 	fmt.Fprintln(w, `<ul class="navbar">`)
 	fmt.Fprintln(w, `<li><a href="javascript:history.back()">Back</a>`)

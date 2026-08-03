@@ -74,6 +74,8 @@ func newAppMux() *http.ServeMux {
 	mux.HandleFunc("/most_reviewed_table.cgi", MostReviewedTableHandler)
 	mux.HandleFunc("/most_reviewed.cgi", MostReviewedHandler)
 	mux.HandleFunc("/update.cgi", UpdateHandler)
+	mux.HandleFunc("/mypreferences.cgi", PreferencesHandler)
+	mux.HandleFunc("/submitpreferences.cgi", SubmitPreferencesHandler)
 
 	legacyRedirect := func(target string) http.HandlerFunc {
 		return func(w http.ResponseWriter, r *http.Request) {

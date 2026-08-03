@@ -12,7 +12,7 @@
    /* Page structure */
    --bg-page:           #c2eaf0; /* Was #eec */
    --bg-content:        white;
-   --bg-nav:            #97ADB2; /* Was #ccc */
+   --bg-nav:            #ADCBD1; /* Was #ccc */
    --bg-statusbar:      black;
    --border-color:      black;
 
@@ -39,6 +39,11 @@
    --text-secondary:    #333;
    --text-muted:        #555;
    --text-faint:        #888;
+
+   /* Links */
+   --link-color:        #00e;
+   --link-visited:      #551a8b;
+   --link-hover:        #00c;
 }
 
 html,body { 
@@ -403,6 +408,18 @@ ul.navbar {
    margin-left: 15px;
    padding: 0;
 }
+
+div#nav a:link,
+div#main a:link,
+div#content a:link    { color: var(--link-color); }
+
+div#nav a:visited,
+div#main a:visited,
+div#content a:visited { color: var(--link-visited); }
+
+div#nav a:hover,
+div#main a:hover,
+div#content a:hover   { color: var(--link-hover); }
 
 div.divider:hover div.divothersites,
 div.divider:focus div.divothersites,
@@ -799,6 +816,7 @@ a.button {
    border-right: none;
    border-radius: 24px 0 0 24px;
    background: var(--bg-input);
+   color: var(--text-primary);
    cursor: pointer;
    outline: none;
    flex-shrink: 0;
@@ -814,6 +832,8 @@ a.button {
    border-radius: 0;
    outline: none;
    min-width: 0;
+   background: var(--bg-input);
+   color: var(--text-primary);
 }
 
 .homepage_search_input:focus {
@@ -826,13 +846,14 @@ a.button {
    border: 1px solid var(--bg-nav);
    border-left: none;
    border-radius: 0 24px 24px 0;
-   background: #e8e8e8;
+   background: var(--bg-table-header);
+   color: var(--text-primary);
    cursor: pointer;
    flex-shrink: 0;
 }
 
 .homepage_search_button:hover {
-   background: #d0d0d0;
+   background: var(--bg-nav);
 }
 
 #homepage_birthdays {
@@ -852,3 +873,83 @@ a.button {
    margin: 0 auto;
 }
 
+
+/* ── Dark mode ─────────────────────────────────────────────────────────────
+   Two mechanisms:
+     1. @media (prefers-color-scheme: dark)  — used when dark_mode = 2 (system)
+     2. [data-theme="dark"] on <html>        — used when dark_mode = 1 (forced dark)
+   A [data-theme="light"] selector forces light even on a dark-mode system.
+*/
+:root[data-theme="light"] {
+   --bg-page:           #c2eaf0;
+   --bg-content:        white;
+   --bg-nav:            #ADCBD1;
+   --bg-statusbar:      black;
+   --border-color:      black;
+   --bg-divider:        #004;
+   --text-on-dark:      white;
+   --bg-table2:         #eee;
+   --bg-table-header:   #B3B3B3;
+   --bg-edit:           #C7DBFF;
+   --bg-input:          #f5f5f5;
+   --bg-success:        #d0ffd0;
+   --bg-error:          #ffc0c0;
+   --bg-warning:        #FFF5C7;
+   --color-new-link:    #ba0000;
+   --text-primary:      black;
+   --text-secondary:    #333;
+   --text-muted:        #555;
+   --text-faint:        #888;
+}
+
+:root[data-theme="dark"] {
+   --bg-page:           #1a2a2e;
+   --bg-content:        #1e2a2e;
+   --bg-nav:            #243438;
+   --bg-statusbar:      #0d0d0d;
+   --border-color:      #4a5a5e;
+   --bg-divider:        #003050;
+   --text-on-dark:      #e8e8e8;
+   --bg-table2:         #243438;
+   --bg-table-header:   #2e3e42;
+   --bg-edit:           #1a2a4a;
+   --bg-input:          #243438;
+   --bg-success:        #1a3a1e;
+   --bg-error:          #3a1a1a;
+   --bg-warning:        #3a3010;
+   --color-new-link:    #ff8888;
+   --text-primary:      #dde6e8;
+   --text-secondary:    #b0bec0;
+   --text-muted:        #8a9ea0;
+   --text-faint:        #607478;
+   --link-color:        #7ab8f5;
+   --link-visited:      #c39bd3;
+   --link-hover:        #a8d4f7;
+}
+
+@media (prefers-color-scheme: dark) {
+   :root:not([data-theme="light"]) {
+      --bg-page:           #1a2a2e;
+      --bg-content:        #1e2a2e;
+      --bg-nav:            #243438;
+      --bg-statusbar:      #0d0d0d;
+      --border-color:      #4a5a5e;
+      --bg-divider:        #003050;
+      --text-on-dark:      #e8e8e8;
+      --bg-table2:         #243438;
+      --bg-table-header:   #2e3e42;
+      --bg-edit:           #1a2a4a;
+      --bg-input:          #243438;
+      --bg-success:        #1a3a1e;
+      --bg-error:          #3a1a1a;
+      --bg-warning:        #3a3010;
+      --color-new-link:    #ff8888;
+      --text-primary:      #dde6e8;
+      --text-secondary:    #b0bec0;
+      --text-muted:        #8a9ea0;
+      --text-faint:        #607478;
+      --link-color:        #7ab8f5;
+      --link-visited:      #c39bd3;
+      --link-hover:        #a8d4f7;
+   }
+}
