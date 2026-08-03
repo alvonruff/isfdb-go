@@ -39,6 +39,11 @@
    --text-secondary:    #333;
    --text-muted:        #555;
    --text-faint:        #888;
+
+   /* Links */
+   --link-color:        #00e;
+   --link-visited:      #551a8b;
+   --link-hover:        #00c;
 }
 
 html,body { 
@@ -403,6 +408,10 @@ ul.navbar {
    margin-left: 15px;
    padding: 0;
 }
+
+div#nav a:link    { color: var(--link-color); }
+div#nav a:visited { color: var(--link-visited); }
+div#nav a:hover   { color: var(--link-hover); }
 
 div.divider:hover div.divothersites,
 div.divider:focus div.divothersites,
@@ -901,6 +910,9 @@ a.button {
    --text-secondary:    #b0bec0;
    --text-muted:        #8a9ea0;
    --text-faint:        #607478;
+   --link-color:        #7ab8f5;
+   --link-visited:      #c39bd3;
+   --link-hover:        #a8d4f7;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -924,5 +936,8 @@ a.button {
       --text-secondary:    #b0bec0;
       --text-muted:        #8a9ea0;
       --text-faint:        #607478;
+      --link-color:        #7ab8f5;
+      --link-visited:      #c39bd3;
+      --link-hover:        #a8d4f7;
    }
 }
