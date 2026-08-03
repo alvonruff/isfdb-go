@@ -409,9 +409,17 @@ ul.navbar {
    padding: 0;
 }
 
-div#nav a:link    { color: var(--link-color); }
-div#nav a:visited { color: var(--link-visited); }
-div#nav a:hover   { color: var(--link-hover); }
+div#nav a:link,
+div#main a:link,
+div#content a:link    { color: var(--link-color); }
+
+div#nav a:visited,
+div#main a:visited,
+div#content a:visited { color: var(--link-visited); }
+
+div#nav a:hover,
+div#main a:hover,
+div#content a:hover   { color: var(--link-hover); }
 
 div.divider:hover div.divothersites,
 div.divider:focus div.divothersites,
@@ -808,6 +816,7 @@ a.button {
    border-right: none;
    border-radius: 24px 0 0 24px;
    background: var(--bg-input);
+   color: var(--text-primary);
    cursor: pointer;
    outline: none;
    flex-shrink: 0;
@@ -823,6 +832,8 @@ a.button {
    border-radius: 0;
    outline: none;
    min-width: 0;
+   background: var(--bg-input);
+   color: var(--text-primary);
 }
 
 .homepage_search_input:focus {
@@ -835,13 +846,14 @@ a.button {
    border: 1px solid var(--bg-nav);
    border-left: none;
    border-radius: 0 24px 24px 0;
-   background: #e8e8e8;
+   background: var(--bg-table-header);
+   color: var(--text-primary);
    cursor: pointer;
    flex-shrink: 0;
 }
 
 .homepage_search_button:hover {
-   background: #d0d0d0;
+   background: var(--bg-nav);
 }
 
 #homepage_birthdays {
