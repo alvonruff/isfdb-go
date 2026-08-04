@@ -141,23 +141,12 @@ func printAuthorMetadataBox(w http.ResponseWriter, a *Author, id int) {
 		fmt.Fprintln(w, `</table>`)
 
 		rawImage := a.AuthorImage.String
-		if strings.Contains(rawImage, "amazon.com") {
-			image := ISFDBHostCorrection(rawImage, "")
-			if idx := strings.Index(image, "|"); idx >= 0 {
-				image = image[:idx]
-			}
-			domains, err := SQLLoadRecognizedDomains(DB)
-			if err != nil {
-				log.Println(err)
-			} else {
-				_, credit, homePage, linkedPage := BuildDisplayedURL(image, domains)
-				fmt.Fprintf(w, "Image supplied by <a href=\"%s\" target=\"_blank\">%s</a>",
-					homePage, ISFDBText(credit))
-				if linkedPage != "" {
-					fmt.Fprintf(w, " on <a href=\"%s\" target=\"_blank\">this Web page</a>", linkedPage)
-				}
-			}
-		} else {
+		image := ISFDBHostCorrection(rawImage, "")
+		if idx := strings.Index(image, "|"); idx >= 0 {
+			image = image[:idx]
+		}
+		if strings.Contains(image, "isfdb.org") || !strings.HasPrefix(image, "http") {
+			// Hosted on ISFDB — link to the wiki image page.
 			fmt.Fprintf(w, "Image supplied by <a href=\"https://www.isfdb.org\" target=\"_blank\">ISFDB</a>")
 			filename := rawImage
 			if idx := strings.LastIndex(rawImage, "/"); idx >= 0 {
@@ -169,6 +158,19 @@ func printAuthorMetadataBox(w http.ResponseWriter, a *Author, id int) {
 			if filename != "" {
 				wikiPage := "https://www.isfdb.org/wiki/index.php/Image:" + filename
 				fmt.Fprintf(w, " on <a href=\"%s\" target=\"_blank\">this Web page</a>", wikiPage)
+			}
+		} else {
+			// External image — look up the domain in the recognized domains table.
+			domains, err := SQLLoadRecognizedDomains(DB)
+			if err != nil {
+				log.Println(err)
+			} else {
+				_, credit, homePage, linkedPage := BuildDisplayedURL(image, domains)
+				fmt.Fprintf(w, "Image supplied by <a href=\"%s\" target=\"_blank\">%s</a>",
+					homePage, ISFDBText(credit))
+				if linkedPage != "" {
+					fmt.Fprintf(w, " on <a href=\"%s\" target=\"_blank\">this Web page</a>", linkedPage)
+				}
 			}
 		}
 		fmt.Fprintln(w)
