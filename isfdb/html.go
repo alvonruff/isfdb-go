@@ -17,7 +17,7 @@ const (
 	PROTOCOL   = "http"
 	HTMLHOST   = "localhost:8080"
 	WIKILOC    = "localhost:8080"
-	CSS_VERSION = "4"
+	CSS_VERSION = "5"
 )
 
 func ISFDBText(s string) string {

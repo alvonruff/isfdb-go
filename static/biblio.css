@@ -421,6 +421,11 @@ div#nav a:hover,
 div#main a:hover,
 div#content a:hover   { color: var(--link-hover); }
 
+a.inverted,
+a.inverted:link,
+a.inverted:visited,
+a.inverted:hover      { color: var(--text-on-dark); }
+
 div.divider:hover div.divothersites,
 div.divider:focus div.divothersites,
 div.divider:active div.divothersites {
